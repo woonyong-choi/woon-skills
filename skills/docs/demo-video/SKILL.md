@@ -23,18 +23,24 @@ description: HyperFrames로 실제 제품 화면과 HTML 장면을 부드러운 
 5. `check`의 lint·runtime·layout·contrast·motion 결과와 장면별 PNG를 확인한다.
    0 samples·정지 타임라인·잘린 글자·비어 있는 장면은 통과가 아니다. 의도한 겹침만
    좁게 표시하며 오류를 숨기기 위해 검사 전체를 끄지 않는다.
-6. [렌더 실행기](scripts/render.py)로 MP4와 GIF를 만든다. `ffprobe`로 실제 fps·길이·크기,
-   장면 시작·중간·끝과 루프 경계를 확인한다. 브라우저에서 완성 파일을 재생해 본다.
+6. [렌더 실행기](scripts/render.py)의 경로를 명시한다. UI 원색을 보존할 때는 원본
+   canvas의 `--background '#RRGGBB'`로 PNG에서 GIF와 RGB MP4를 각각 만든다.
+   일반 촬영 영상은 `--video`를 선택할 수 있다. 준비 timeout을 성공으로 처리하지 않는다.
+   [색·준비 상태 검증](references/composition.md#색과-캡처-준비)을 따라 실제 디코딩한 색,
+   작은 글자·선, fps·길이·크기와 반복 경계를 확인한다. 브라우저 재생은 따로 검증한다.
 7. 결과와 함께 HTML 원본, 캡처 출처·버전, 도구 버전, 파일 SHA-256을 프로젝트에 남긴다.
    원본과 최종 자산은 보존하고 완료된 중간 출력만 정리한다.
 
 ```sh
-python "$DEMO_VIDEO_SKILL/scripts/render.py" ./demo/intro --output ./docs/assets/intro
+python "$DEMO_VIDEO_SKILL/scripts/render.py" ./demo/intro --background '#ffffff' --output ./docs/assets/intro
 ```
 
 `DEMO_VIDEO_SKILL`은 현재 설치된 이 스킬의 경로다. 실행기는 기본적으로 검증부터
 수행하며 기존 결과를 덮어쓰지 않는다. 성공한 같은 입력의 검사는 같은 작업에서만
 `--checked`로 재사용한다. 수정 후에는 다시 검사한다.
+예시의 흰색을 임의로 적용하지 말고 원본 canvas 값을 사용한다. PNG는 중간 입력이며,
+RGB MP4의 색 정확성과 일반 브라우저 재생 호환성은 별개다. 공개 build tool이 이미
+같은 경로를 소유하면 그 도구를 재사용하고 독립 인코더를 복제하지 않는다.
 
 계정·클라우드 렌더는 필요하지 않다. 텔레메트리는 실행 환경에서 끄고, 사용자의 별도
 요청 없이 feedback·공개 repro·업로드를 보내지 않는다. 사용량·순위·오류 없음·사용자
