@@ -106,7 +106,12 @@ class AuditLearningContentTest(unittest.TestCase):
     def test_rejects_unreachable_book_contract(self) -> None:
         root = self.make_root()
         path = root / "skills/knowledge/compile-knowledge/SKILL.md"
-        path.write_text(path.read_text().replace("(references/book-workflow.md)", "(unrelated.md)"))
+        path.write_text(
+            path.read_text(encoding="utf-8").replace(
+                "(references/book-workflow.md)", "(unrelated.md)"
+            ),
+            encoding="utf-8",
+        )
         self.assertTrue(any("book contract reference is missing" in error for error in audit_learning_content(root)))
 
     def test_rejects_zero_trials(self) -> None:
