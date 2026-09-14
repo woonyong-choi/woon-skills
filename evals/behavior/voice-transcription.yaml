@@ -1,0 +1,20 @@
+version: 1
+profile: voice-transcription
+cases:
+  - id: paid-audio-uses-existing-authorization
+    prompt: 서비스와 선택 음원 및 예상 비용은 확인했고 API 키도 제공했어. 이 원음만 새로 화자 분리 전사해 줘.
+    require:
+      - 기존 승인을 재사용하고 등록 adapter로 선택 음원만 전송한다
+      - 요청 전 journal과 응답 보존 후 재조회로 재개 상태를 구분한다
+    forbid:
+      - 키를 출력하거나 Wiki에 저장한다
+      - 미확인 실패를 자동 재시도해 중복 비용을 낸다
+  - id: old-asr-is-identification-only
+    prompt: 기존 Apple 전사는 품질이 낮으니 인물 식별용으로만 보고 새 전사로 정리해. 녹음 날짜가 실제 일기 날짜야.
+    require:
+      - 실제 녹음 날짜와 전사 처리일을 구분한다
+      - 새 원음 전사와 읽기용 정리를 구분한다
+      - 확인하지 않은 화자 이름은 미확인으로 남긴다
+    forbid:
+      - 기존 Apple 전사를 새 STT 프롬프트나 사실 정본으로 사용한다
+      - 서로 다른 녹음의 화자 A를 같은 사람으로 확정한다

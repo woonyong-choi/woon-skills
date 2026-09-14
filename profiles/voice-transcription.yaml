@@ -1,0 +1,8 @@
+version: 1
+name: voice-transcription
+installable: false
+max_active: 3
+skills:
+  - skills/common/safety
+  - skills/knowledge/archive
+  - skills/knowledge/voice-transcription

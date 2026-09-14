@@ -1,5 +1,22 @@
 version: 1
 cases:
+  - id: personal-product-video-is-scoped
+    profiles: [personal]
+    expect_skills:
+      - skills/docs/demo-video
+      - skills/docs/diagram
+    reject_skills:
+      - skills/writing/site-promotion
+  - id: private-voice-workflow-is-scoped
+    profiles: [voice-transcription]
+    expect_skills:
+      - skills/knowledge/voice-transcription
+      - skills/knowledge/archive
+      - skills/common/safety
+    reject_skills:
+      - skills/productivity/tasks
+      - skills/productivity/nemonic-note
+      - skills/knowledge/publish
   - id: ai-adds-agent-quality-on-demand
     profiles: [ai]
     expect_skills:
@@ -220,12 +237,13 @@ cases:
     profiles: [personal]
     expect_skills:
       - skills/common/safety
+      - skills/common/refactor
       - skills/git/commit
-      - skills/writing/humanize
       - skills/knowledge/people
       - skills/learning/guided-learning
       - skills/learning/kotlin-in-action-14-days
       - skills/productivity/tasks
+      - skills/writing/humanize
     reject_skills:
       - skills/knowledge/publish
       - skills/github/release

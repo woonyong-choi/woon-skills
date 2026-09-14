@@ -1,0 +1,16 @@
+version: 1
+cases:
+  - id: paid-diarized-original-audio
+    prompt: "선별한 원본 녹음을 승인한 OpenAI API로 화자 분리 전사하고 실제 녹음 날짜를 남겨 줘."
+    profiles: [voice-transcription]
+    expect_primary: voice-transcription
+    allow_support: [archive, safety]
+    reject: []
+    max_selected: 3
+  - id: existing-text-archive-only
+    prompt: "이미 확정한 전사 텍스트를 기존 Wiki 기록에 병합해 줘. 오디오는 보내지 마."
+    profiles: [voice-transcription]
+    expect_primary: archive
+    allow_support: []
+    reject: [voice-transcription]
+    max_selected: 1

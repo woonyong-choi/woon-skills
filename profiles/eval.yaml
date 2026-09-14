@@ -27,6 +27,7 @@ skills:
   - skills/data/storage
   - skills/docs/adr
   - skills/docs/diagram
+  - skills/docs/demo-video
   - skills/docs/docs
   - skills/docs/lookup
   - skills/git/branch
@@ -64,6 +65,7 @@ skills:
   - skills/ops/docker
   - skills/ops/observe
   - skills/productivity/tasks
+  - skills/productivity/nemonic-note
   - skills/research/market
   - skills/research/research
   - skills/research/research-library

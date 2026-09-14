@@ -1,0 +1,16 @@
+version: 1
+cases:
+  - id: product-html-to-motion
+    prompt: HyperFrames로 플러그인 소개 영상을 만들고 README에 쓸 GIF도 만들어 줘.
+    profiles: [eval]
+    expect_primary: demo-video
+    allow_support: [ui-test, docs]
+    reject: [diagram, site-promotion]
+    max_selected: 3
+  - id: static-architecture-stays-diagram
+    prompt: 로그인 요청의 서버 처리 순서를 정적인 Mermaid로 그려 줘.
+    profiles: [eval]
+    expect_primary: diagram
+    allow_support: []
+    reject: [demo-video]
+    max_selected: 1

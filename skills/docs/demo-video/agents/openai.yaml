@@ -1,0 +1,4 @@
+interface:
+  display_name: "제품 소개 영상과 GIF"
+  short_description: "실제 제품 화면과 HTML로 부드러운 소개 영상과 GIF 제작"
+  default_prompt: "$demo-video로 실제 동작을 보여주는 소개 영상과 README GIF를 만들고 가독성과 프레임을 검증해 주세요."

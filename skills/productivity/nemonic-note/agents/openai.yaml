@@ -1,0 +1,4 @@
+interface:
+  display_name: "Nemonic Note"
+  short_description: "Nemonic용 코드형 학습 포스트잇을 빠르게 구성·검증·출력"
+  default_prompt: "Use $nemonic-note to turn this concept into a compact editable Nemonic post-it and print it when I explicitly request printing."

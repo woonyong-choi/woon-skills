@@ -1,0 +1,4 @@
+interface:
+  display_name: "음성 전사"
+  short_description: "선택한 원음을 화자와 실제 녹음 날짜를 보존해 전사하고 아카이빙"
+  default_prompt: "$voice-transcription으로 선택한 녹음을 전사하고 실제 녹음 날짜와 화자 구분을 보존해 줘."

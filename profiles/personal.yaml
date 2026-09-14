@@ -1,10 +1,12 @@
 version: 1
 name: personal
-max_active: 17
+max_active: 20
 skills:
   - skills/common/safety
+  - skills/common/refactor
   - skills/git/commit
   - skills/docs/diagram
+  - skills/docs/demo-video
   - skills/knowledge/archive
   - skills/knowledge/compile-knowledge
   - skills/knowledge/ingest
@@ -15,6 +17,7 @@ skills:
   - skills/learning/kotlin-in-action-14-days
   - skills/knowledge/people
   - skills/productivity/tasks
+  - skills/productivity/nemonic-note
   - skills/research/research
   - skills/research/research-library
   - skills/writing/tech
