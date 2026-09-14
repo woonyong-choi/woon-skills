@@ -382,7 +382,7 @@
       "name": "refactor",
       "domain": "common",
       "path": "skills/common/refactor",
-      "description": "외부 동작을 유지하면서 구조, 이름, 함수·클래스 경계, 중복 또는 dependency direction을 개선해 달라는 요청에 사용한다."
+      "description": "외부 동작을 유지하며 구조, 이름, 함수·클래스 경계, 중복 또는 dependency direction을 개선하는 명시적 refactor, code review, 유지보수성 개선 요청에 사용한다."
     },
     {
       "name": "registry",

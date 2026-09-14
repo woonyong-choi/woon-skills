@@ -24,7 +24,7 @@ INTERFACE_FIELD = re.compile(
     r'^  (?P<key>display_name|short_description|default_prompt): (?P<value>".*")$',
     re.MULTILINE,
 )
-EFFECTS = {"read", "write", "process", "network", "commit", "merge", "release", "push"}
+EFFECTS = {"read", "write", "process", "network", "commit", "merge", "release", "push", "delete"}
 
 
 def interface_fields(text: str) -> dict[str, str]:
