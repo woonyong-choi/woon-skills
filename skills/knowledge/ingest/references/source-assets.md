@@ -14,7 +14,7 @@
 - target 문서와 canonical asset 경로
 - `embedded`, `mermaid-preferred`, `link-only`, `wiki-source`, `placeholder`, `unreferenced` 중 하나의 판정과 이유
 
-머신별 절대 경로는 commit하지 않는다. 출처가 local PDF라면 원본은 `wiki/private/_sources/**` 안에 두고 catalog의 stable source ID와 Vault 상대 경로로만 연결한다. Git-ignored local-only bytes도 반드시 이 Wiki 소유 경계 안에 있어야 한다.
+머신별 절대 경로는 commit하지 않는다. 출처가 local PDF라면 원본은 `private/**` 안에 두고 catalog의 stable source ID와 Vault 상대 경로로만 연결한다. Git-ignored local-only bytes도 반드시 이 Wiki 소유 경계 안에 있어야 한다.
 
 ## 무엇을 본문에 보존하는가
 

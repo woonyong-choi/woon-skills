@@ -27,7 +27,10 @@ class AuditLearningContentTest(unittest.TestCase):
         (root / "evals/results").mkdir(parents=True)
         (root / "standards").mkdir(parents=True)
         (root / "skills/knowledge/archive").mkdir(parents=True)
+        (root / "skills/knowledge/compile-knowledge/references").mkdir(parents=True)
         (root / "skills/knowledge/ingest").mkdir(parents=True)
+        (root / "skills/knowledge/knowledge-navigation").mkdir(parents=True)
+        (root / "skills/learning/kotlin-in-action-14-days").mkdir(parents=True)
         shutil.copy(
             ROOT / "evals/quality/learning-content.yaml",
             root / "evals/quality/learning-content.yaml",
@@ -45,6 +48,10 @@ class AuditLearningContentTest(unittest.TestCase):
             root / "standards/learning-writing-harness.md",
         )
         shutil.copy(
+            ROOT / "standards/learning-quality-review-prompt.md",
+            root / "standards/learning-quality-review-prompt.md",
+        )
+        shutil.copy(
             ROOT / "standards/learning-style-corpus.yaml",
             root / "standards/learning-style-corpus.yaml",
         )
@@ -57,16 +64,25 @@ class AuditLearningContentTest(unittest.TestCase):
             root / "skills/knowledge/archive/SKILL.md",
         )
         shutil.copy(
+            ROOT / "skills/knowledge/compile-knowledge/SKILL.md",
+            root / "skills/knowledge/compile-knowledge/SKILL.md",
+        )
+        shutil.copy(
+            ROOT / "skills/knowledge/compile-knowledge/references/book-workflow.md",
+            root / "skills/knowledge/compile-knowledge/references/book-workflow.md",
+        )
+        shutil.copy(
             ROOT / "skills/knowledge/ingest/SKILL.md",
             root / "skills/knowledge/ingest/SKILL.md",
         )
-        (root / "skills/knowledge/compile-knowledge").mkdir(parents=True)
-        (root / "skills/learning/kotlin-in-action-14-days").mkdir(parents=True)
-        for relative in (
-            "skills/knowledge/compile-knowledge/SKILL.md",
-            "skills/learning/kotlin-in-action-14-days/SKILL.md",
-        ):
-            shutil.copy(ROOT / relative, root / relative)
+        shutil.copy(
+            ROOT / "skills/knowledge/knowledge-navigation/SKILL.md",
+            root / "skills/knowledge/knowledge-navigation/SKILL.md",
+        )
+        shutil.copy(
+            ROOT / "skills/learning/kotlin-in-action-14-days/SKILL.md",
+            root / "skills/learning/kotlin-in-action-14-days/SKILL.md",
+        )
         return root
 
     def test_accepts_current_quality_contract(self) -> None:
@@ -81,6 +97,17 @@ class AuditLearningContentTest(unittest.TestCase):
         )
 
         self.assertTrue(any("version must be 2" in error for error in audit_learning_content(root)))
+
+    def test_rejects_missing_book_contract(self) -> None:
+        root = self.make_root()
+        (root / "skills/knowledge/compile-knowledge/references/book-workflow.md").unlink()
+        self.assertTrue(any("book-workflow.md: missing" in error for error in audit_learning_content(root)))
+
+    def test_rejects_unreachable_book_contract(self) -> None:
+        root = self.make_root()
+        path = root / "skills/knowledge/compile-knowledge/SKILL.md"
+        path.write_text(path.read_text().replace("(references/book-workflow.md)", "(unrelated.md)"))
+        self.assertTrue(any("book contract reference is missing" in error for error in audit_learning_content(root)))
 
     def test_rejects_zero_trials(self) -> None:
         root = self.make_root()
@@ -165,6 +192,82 @@ class AuditLearningContentTest(unittest.TestCase):
         self.assertTrue(
             any(
                 "record-preserves-provenance-and-uncertainty" in error
+                for error in audit_learning_content(root)
+            )
+        )
+
+    def test_rejects_missing_concise_keyword_heading_contract(self) -> None:
+        root = self.make_root()
+        path = root / "standards/learning-writing-harness.md"
+        path.write_text(
+            path.read_text(encoding="utf-8").replace(
+                "일반 개발 detail 문서의 H1은 다시 찾을 수 있는 짧은 정식 키워드로 쓴다",
+                "removed concise H1 contract",
+                1,
+            ),
+            encoding="utf-8",
+        )
+
+        self.assertTrue(
+            any(
+                "missing concise adaptive heading rule" in error
+                for error in audit_learning_content(root)
+            )
+        )
+
+    def test_rejects_missing_concise_keyword_behavior_case(self) -> None:
+        root = self.make_root()
+        path = root / "evals/behavior/learning-content.yaml"
+        path.write_text(
+            path.read_text(encoding="utf-8").replace(
+                "concise-keyword-title-and-adaptive-headings",
+                "removed-concise-heading-case",
+                1,
+            ),
+            encoding="utf-8",
+        )
+
+        self.assertTrue(
+            any(
+                "concise-keyword-title-and-adaptive-headings" in error
+                for error in audit_learning_content(root)
+            )
+        )
+
+    def test_rejects_missing_adaptive_heading_review_rule(self) -> None:
+        root = self.make_root()
+        path = root / "standards/learning-quality-review-prompt.md"
+        path.write_text(
+            path.read_text(encoding="utf-8").replace(
+                "일반 개발 detail 문서라면 H1은 `타입 시스템`, `JVM`, `다음 토큰 예측`처럼 짧은 정식 키워드여야 한다",
+                "removed adaptive heading review rule",
+                1,
+            ),
+            encoding="utf-8",
+        )
+
+        self.assertTrue(
+            any(
+                "missing adaptive heading review rule" in error
+                for error in audit_learning_content(root)
+            )
+        )
+
+    def test_rejects_missing_mixed_depth_behavior_case(self) -> None:
+        root = self.make_root()
+        path = root / "evals/behavior/learning-content.yaml"
+        path.write_text(
+            path.read_text(encoding="utf-8").replace(
+                "book-chapter-mixed-depth-is-conditional",
+                "removed-mixed-depth-case",
+                1,
+            ),
+            encoding="utf-8",
+        )
+
+        self.assertTrue(
+            any(
+                "book-chapter-mixed-depth-is-conditional" in error
                 for error in audit_learning_content(root)
             )
         )

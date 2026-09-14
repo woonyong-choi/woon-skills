@@ -26,7 +26,10 @@ def non_empty_strings(value: object) -> bool:
 def audit_learning_content(root: Path) -> list[str]:
     errors: list[str] = []
     standard_path = root / "standards/learning-content-quality.md"
+    review_prompt_path = root / "standards/learning-quality-review-prompt.md"
     compile_skill_path = root / "skills/knowledge/compile-knowledge/SKILL.md"
+    book_contract_path = compile_skill_path.parent / "references/book-workflow.md"
+    navigation_skill_path = root / "skills/knowledge/knowledge-navigation/SKILL.md"
     kotlin_plan_skill_path = root / "skills/learning/kotlin-in-action-14-days/SKILL.md"
     quality_path = root / "evals/quality/learning-content.yaml"
     behavior_path = root / "evals/behavior/learning-content.yaml"
@@ -38,7 +41,14 @@ def audit_learning_content(root: Path) -> list[str]:
     if not result_paths:
         return [f"{root / 'evals/results'}: learning-content result is missing"]
 
-    for path in (standard_path, compile_skill_path, kotlin_plan_skill_path):
+    for path in (
+        standard_path,
+        review_prompt_path,
+        compile_skill_path,
+        book_contract_path,
+        navigation_skill_path,
+        kotlin_plan_skill_path,
+    ):
         if not path.exists():
             errors.append(f"{path}: missing")
     if standard_path.exists():
@@ -49,6 +59,7 @@ def audit_learning_content(root: Path) -> list[str]:
             "모든 원문 code를 verbatim으로 exact-once 보존한다",
             "fragment·dependency·intentional-error·placeholder",
             "synthetic wrapper·대체 code는 만들지 않는다",
+            "retirement_content_relocations",
         ):
             if required not in standard_text:
                 errors.append(f"{standard_path}: missing book source-only rule: {required}")
@@ -64,12 +75,17 @@ def audit_learning_content(root: Path) -> list[str]:
                 errors.append(f"{standard_path}: legacy runnable contract remains: {legacy}")
     if compile_skill_path.exists():
         compile_text = compile_skill_path.read_text(encoding="utf-8")
-        if "`source-landed`와 `translated` leaf authored body에는 원문에 없는" not in compile_text:
-            errors.append(f"{compile_skill_path}: missing source-only book leaf rule")
+        if "(references/book-workflow.md)" not in compile_text:
+            errors.append(f"{compile_skill_path}: book contract reference is missing")
+        if book_contract_path.is_file():
+            compile_text += "\n" + book_contract_path.read_text(encoding="utf-8")
+        if "`source-landed`와 `translated` reader body에는 원문에 없는" not in compile_text:
+            errors.append(f"{compile_skill_path}: missing source-only book reader rule")
         for required in (
             "exact-once 배정하고 verbatim으로 보존한다",
             "fragment|dependency|intentional-error|placeholder",
             "synthetic wrapper·harness나 대체 code",
+            "retirement_content_relocations",
         ):
             if required not in compile_text:
                 errors.append(f"{compile_skill_path}: missing static-only rule: {required}")
@@ -80,7 +96,7 @@ def audit_learning_content(root: Path) -> list[str]:
         if "personal/projects/kotlin-in-action-14-days" not in kotlin_plan_text:
             errors.append(f"{kotlin_plan_skill_path}: project progress owner is missing")
         if "책 reader body에 `직접 확인하기`" not in kotlin_plan_text:
-            errors.append(f"{kotlin_plan_skill_path}: book canonical write prohibition is missing")
+            errors.append(f"{kotlin_plan_skill_path}: book reader write prohibition is missing")
 
     quality = load_mapping(quality_path)
     if quality.get("version") != 1:
@@ -125,6 +141,24 @@ def audit_learning_content(root: Path) -> list[str]:
         for heading in required_sections:
             if heading not in harness:
                 errors.append(f"{harness_path}: missing {heading}")
+        for required in (
+            "일반 개발 detail 문서의 H1은 다시 찾을 수 있는 짧은 정식 키워드로 쓴다",
+            "H2는 이번 문단에서 실제로 바뀌는 값·상태·동작·판단 기준을 짧게 잡는다",
+        ):
+            if required not in harness:
+                errors.append(f"{harness_path}: missing concise adaptive heading rule")
+        if "값의 종류를 확인하는 이유" in harness:
+            errors.append(f"{harness_path}: explanatory H1 legacy rule remains")
+
+    if review_prompt_path.exists():
+        review_prompt = review_prompt_path.read_text(encoding="utf-8")
+        for required in (
+            "일반 개발 detail 문서라면 H1은 `타입 시스템`, `JVM`, `다음 토큰 예측`처럼 짧은 정식 키워드여야 한다",
+            "`질문`·`실행`·`결과`·`해석`·`확장` 같은 고정 진행 목차",
+            "책의 실제 장절, 사람·프로젝트·원자료의 식별자, hyperlink-only 탐색 surface에는 이 제목 규칙을 적용하지 않는다",
+        ):
+            if required not in review_prompt:
+                errors.append(f"{review_prompt_path}: missing adaptive heading review rule")
 
     learning_context_uri = "repo://skills/skills/writing/tech/scripts/learning-context.sh"
     for integration_path in (
@@ -321,6 +355,11 @@ def audit_learning_content(root: Path) -> list[str]:
                 )
         required_behavior_cases = {
             "archive-envelope-stays-owned",
+            "book-chapter-keeps-shallow-section-body",
+            "book-chapter-mixed-depth-is-conditional",
+            "book-numbered-section-is-a-map-group-not-wrapper",
+            "book-root-is-navigation-only",
+            "concise-keyword-title-and-adaptive-headings",
             "fixed-template-is-not-quality",
             "record-preserves-provenance-and-uncertainty",
             "decision-keeps-reversal-condition",

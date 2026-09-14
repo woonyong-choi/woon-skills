@@ -1,5 +1,6 @@
 # Canonical Knowledge MCP contract
 
+- `woon_knowledge_intake(action, request)`: explicit semantic Inbox intake, terminal status, recovery and generated-card cleanup around the existing Wiki writer. Use the [Core request contract](repo://core/README.md#명시적-inbox-처리). Intake IDs identify selected material; they do not replace canonical IDs, content approval IDs or Docling conversion IDs.
 - `woon_knowledge_search(query, limit)`: bounded snippets and stable IDs. Read-only.
 - `woon_knowledge_get(canonical_id)`: complete body, metadata, path, and content revision. Read-only.
 - `woon_knowledge_archive_conversation(canonical_id, title, domain, summary, purpose, body, difficulty, prerequisites, next_concepts, related, source_session_ids, expected_revision)`: creates one new ID or replaces one existing ID when `expected_revision` matches. `purpose` is a nonempty statement of why the document is retained and what future question, decision, or output it should support.

@@ -5,6 +5,7 @@
 - `sources.yaml`: `source_id`, kind, safe locator, original/normalized SHA-256, privacy, lifecycle, title, body. New non-`legacy-wiki` sources additionally require a nonempty `purpose` that states why the knowledge is retained and what future question, decision, or output it supports. Conversation provenance may also carry `source_session_ids`.
 - `claims.yaml`: only `status: accepted` claims render. Each claim declares one or more source IDs and Markdown supported by those sources.
 - A replaced conversation revision remains as `lifecycle: archived` source and `status: superseded` claim with a `superseded_by` ID. Its raw body and hash stay immutable, but only the current `compiled/accepted` pair belongs to a page spec and normal retrieval.
+- Explicitly reviewed, public `curated-wiki` history may use the Core `source-body-plan` terminal contract: retain identity, hashes and successor references, replacing only consumed generated body bytes with `body_retention`. Current/accepted references, private or original evidence, books and protected recovery inputs remain ineligible. The shared writer must compare the plan's catalog and record revisions before applying it. A terminal hash is not a backup of deleted bytes.
 - `pages.yaml`: exactly one safe `.md` output path, frontmatter whose title matches `title`, source IDs, claim IDs, and either `source-body` or `claims` rendering.
 - `relations.yaml`: derived learning edges for review. It does not replace canonical page validation.
 - `receipts.yaml`: compiler-owned input/output hashes. Never edit it manually.

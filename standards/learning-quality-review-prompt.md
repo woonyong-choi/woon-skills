@@ -18,7 +18,7 @@ frontmatter의 `node_kind`가 `root`, `hub`, `entity`이면 이 페이지는 설
 2. `logical_flow`: 관찰·문제·이유·용어·적용 경계가 필요한 순서로 이어지고, 새 개념이 설명보다 먼저 쓰이지 않는다.
 3. `natural_korean`: 주어와 서술어가 호응하고, 문장 사이의 인과·대조·조건 관계가 실제 연결 어미나 접속 표현으로 드러난다. 키워드 나열, 번역투, 지나치게 쪼갠 단문, 근거 없는 단정은 실패 사유가 될 수 있다.
 4. `evidence_boundary`: source가 직접 말하는 사실, 현재 해석, 미결정·한계, 실제·예상 실행 결과가 혼동되지 않는다.
-5. `revisitability`: H1·H2 구조, 정확한 용어·identifier, 목적과 관련 경계가 있어 나중에 필요한 부분을 다시 찾을 수 있다.
+5. `revisitability`: H1·H2 구조, 정확한 용어·identifier, 목적과 관련 경계가 있어 나중에 필요한 부분을 다시 찾을 수 있다. 일반 개발 detail 문서라면 H1은 `타입 시스템`, `JVM`, `다음 토큰 예측`처럼 짧은 정식 키워드여야 한다. 제목에서 뺀 읽는 이유와 장면은 첫 prose 문단이 맡는다. H2는 `한 칸 뒤`, `창의 길이`, `겹치는 창`처럼 그 문서에서 실제로 변하는 값·상태·동작·판단을 짧게 가리켜야 하며, `질문`·`실행`·`결과`·`해석`·`확장` 같은 고정 진행 목차나 `~할 때`·`~하는 일` 같은 반복 문구로 채우면 실패다. 짧은 문서에 H2를 강제로 요구하지 않는다. 책의 실제 장절, 사람·프로젝트·원자료의 식별자, hyperlink-only 탐색 surface에는 이 제목 규칙을 적용하지 않는다.
 6. `current_use`: frontmatter의 `purpose`가 본문의 실제 주제와 맞고, 현재 학습·설명·검색에 다시 쓰는 이유를 과장 없이 말한다. 원문의 과거 수집 의도라고 읽히면 실패다.
 
 일반 교과 개념의 출처는 compiler의 `source → claim → page → receipt` 계층이 소유하므로, 본문에 inline citation이 없다는 이유만으로 `evidence_boundary`를 실패시키지 않는다. 특정 버전의 실제 실행·측정 결과처럼 오해하게 쓰거나 사실·해석·미결정을 섞었을 때만 실패다. `확인 범위:` anchor가 있으면 이를 evidence 경계의 우선 근거로 고르고, 본문이 그 범위를 직접 모순하지 않는 한 통과시킨다.
@@ -35,7 +35,7 @@ frontmatter의 `node_kind`가 `root`, `hub`, `entity`이면 이 페이지는 설
 
 `hard_failures`에는 독자가 잘못 이해하거나, 근거가 없는 사실을 믿거나, 민감한 정보가 노출될 수 있게 만드는 결함만 짧게 적는다. 그런 결함이 없으면 빈 배열을 쓴다.
 
-`criterion_evidence`에는 여섯 rubric 기준마다 `anchor`와 `reason`을 둔다. `anchor`는 현재 Markdown에서 실제로 확인한 제목, identifier 또는 짧은 문장이고, `reason`은 그 anchor 전체를 따옴표 안에 그대로 인용한 뒤 그 문맥을 바탕으로 이 기준을 왜 pass 또는 fail로 판단했는지 적는다. 인용한 anchor가 문서에 없거나 찾을 수 없다고 쓰면 안 된다. 여섯 anchor 중 적어도 네 개는 서로 달라야 하므로, 제목이나 첫 문장 두 개를 되풀이해 문서 전체 품질을 칭찬할 수 없다.
+`criterion_evidence`에는 여섯 rubric 기준마다 `anchor`와 `reason`을 둔다. `anchor`는 현재 Markdown에서 실제로 확인한 제목, identifier 또는 짧은 문장이고, `reason`은 그 anchor 전체를 따옴표 안에 그대로 인용한 뒤 그 문맥을 바탕으로 이 기준을 왜 pass 또는 fail로 판단했는지 적는다. 인용한 anchor가 문서에 없거나 찾을 수 없다고 쓰면 안 된다. 여섯 anchor 중 적어도 네 개는 서로 달라야 하므로, 제목이나 첫 문장 두 개를 되풀이해 문서 전체 품질을 칭찬할 수 없다. `revisitability` 판정에서는 H1과 필요한 H2를 함께 대조해, 제목이 설명문인지와 소제목이 다른 문서에도 그대로 붙일 수 있는 템플릿인지를 현재 Markdown 안에서 입증한다.
 
 `review-quality-ollama`은 로컬 모델에게 `evidence_anchors`만 받는다. 모델은 여섯 기준의 pass/fail과 현재 Markdown의 anchor를 고르고, Woon은 그 선택을 `criterion_evidence`의 인용·reason으로 결정적으로 변환한 뒤 동일한 검증을 적용한다. 이 축약은 모델의 반복 문장을 줄일 뿐, Markdown·rubric·anchor·hard failure 검증 범위를 줄이지 않는다.
 

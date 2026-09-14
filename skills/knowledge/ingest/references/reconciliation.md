@@ -4,7 +4,7 @@
 
 1. `discovered`: 상대 경로와 bytes를 읽고 SHA-256을 계산한다.
 2. `matched`: 동일 `source_id`, 동일 content hash, 경로 후보, 제목·질문 후보를 순서대로 대조한다.
-3. `planned`: `keep`, `merge`, `create`, `alias`, `catalog-only`, `wiki-source`, `exclude` 중 하나만 선택한다. 보존 대상 private 원본은 `external-private` 상태로 외부에 남기지 않고 `wiki-source`로 이동한다.
+3. `planned`: `keep`, `merge`, `create`, `alias`, `catalog-only`, `wiki-source`, `exclude` 중 하나만 선택한다. Vault가 소유할 private source는 `wiki-source`로 보관한다. 외부 원본 이동·삭제는 수집 권한과 구분하며, 명시된 이동 범위가 없으면 원본을 보존하고 canonical 보관 완료와 이전 완료를 나눠 보고한다.
 4. `validated`: 원천의 유효한 고유 정보가 보존되고 금지 결과가 없는지 검사한다.
 5. `applied`: 읽어 둔 target revision과 source hash가 그대로일 때만 원자적으로 반영한다.
 6. `verified`: catalog, canonical Markdown, index generation, Obsidian graph가 같은 결과를 가리킨다.
@@ -51,5 +51,5 @@
 - pending, conflicting source ownership, duplicate canonical identity = 0
 - source 재스캔 결과 drift = 0
 - canonical audit, index generation, Obsidian link, Mermaid 검증 통과
-- 보존 대상 private 원문은 `wiki/private/_sources/**` 안에서 하나의 catalog target을 가지며 외부 보관 경로가 남지 않음
+- Vault 정본 private 원문은 `private/**` 안에서 하나의 catalog target을 가짐; 외부 원본 이동이 요청된 경우에만 해당 이전 완료를 추가 확인
 - 변경 문서별 source hash, before/after revision, 판정, 검증 결과가 ledger에 존재

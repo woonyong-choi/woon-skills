@@ -310,7 +310,7 @@
       "name": "people",
       "domain": "knowledge",
       "path": "skills/knowledge/people",
-      "description": "Vault 문서의 소유자, 자료 저자·제공자, 발표자, 회의 참석자·협업자를 인물 카드와 역할로 연결하고 사람 기준으로 다시 찾을 때 사용한다. 이름만 언급된 자료나 Novel·민감 인물은 이 skill로 일반 지도에 넣지 않는다."
+      "description": "확인된 인물 신상·역할과 Vault 자료를 기존 인물 정본에 출처와 함께 정리하고 사람 기준으로 다시 찾을 때 사용한다. 이름만으로 빈 카드를 만들거나 Novel·민감 인물을 일반 지도에 넣지 않는다."
     },
     {
       "name": "postgres",

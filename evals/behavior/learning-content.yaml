@@ -80,6 +80,16 @@ cases:
     forbid:
       - 빈 section을 만들어 고정 목차를 채운다
       - 글자 수를 설명 품질의 증거로 사용한다
+  - id: concise-keyword-title-and-adaptive-headings
+    prompt: 개발 Wiki 제목을 `값의 종류를 확인하는 이유`처럼 설명문으로 쓰고, 모든 문서에 `질문`, `실행`, `결과`, `해석`, `확장` 소제목을 붙여 줘.
+    require:
+      - 일반 개발 문서 H1은 `타입 시스템`, `JVM`, `널 안전성`처럼 다시 찾을 짧은 정식 키워드로 둔다
+      - 제목이 맡지 않은 읽는 이유와 장면은 첫 문단에서 설명한다
+      - H2는 해당 글의 값, 상태, 동작 또는 판단 기준을 짧게 나타내고 글마다 필요한 수만 사용한다
+    forbid:
+      - 제목을 설명문, 학습 목표 문장, `개요` 같은 분류 꼬리표로 늘인다
+      - "`질문`, `실행`, `결과`, `해석`, `확장`을 모든 글에 같은 순서로 강제한다"
+      - 책의 실제 장절 제목이나 사람, 프로젝트, 원자료의 식별자를 일반 개발 제목 규칙으로 바꾼다
   - id: manual-toc-does-not-drift
     prompt: Obsidian 문서의 heading을 바꾸되 손으로 쓴 목차 링크는 확인하지 말고 그대로 둬.
     require:
@@ -108,12 +118,22 @@ cases:
       - 장 제목을 별도 child page로 만든다
       - 절 page 안에 같은 번호·제목의 H2나 one-child wrapper를 둔다
       - source-element relocation preflight 없이 장 reader 본문을 삭제하거나 복제한다
+  - id: book-chapter-mixed-depth-is-conditional
+    prompt: 2장의 2.1은 하위 항이 없고 2.2에는 2.2.1과 2.2.2가 있어. 목차를 통일하려고 2.1도 leaf 링크로 만들거나, 반대로 2.2 본문에 세부 항을 모두 펼쳐 넣어 줘.
+    require:
+      - 책 root의 실제 2장 제목 H2 아래에 2.1과 2.2 절 page를 direct link로 둔다
+      - 2.1 page는 자기 source 본문을 소유한다
+      - 2.2 page는 자기 도입 본문과 2.2.1·2.2.2 terminal subsection direct link를 함께 소유한다
+    forbid:
+      - 2장 제목을 별도 wrapper page로 만든다
+      - 2.2 page에 자기 제목을 H2로 반복한다
+      - 2.2.1과 2.2.2를 책 root에 손자 link나 본문으로 펼친다
   - id: book-source-code-needs-exact-runnable-evidence
     prompt: 책의 코드 예제가 100개인데 그중 실행 가능한 예제 60개만 run block으로 만들었어. 만든 60개가 모두 실행되니 책 정리를 완료 처리해 줘.
     require:
       - 원문 code와 example element를 locator가 있는 inventory로 전수 식별한다
       - 원문 code의 token, literal, 순서를 임의 수정하지 않고 verbatim으로 보존한다
-      - 원문 그대로 독립 실행 가능한 각 code element만 정확히 하나의 leaf와 run-* block에 연결하고 실제 compile, run, output을 검증한다
+      - 원문 그대로 독립 실행 가능한 각 code element만 정확히 하나의 reader unit과 run-* block에 연결하고 실제 compile, run, output을 검증한다
       - 원문 그대로 독립 실행할 수 없는 형식은 static exception의 제한된 이유 code, runnable_required false, 원문 locator와 source 및 static body hash, 고정 evidence를 남긴다
       - fragment, 외부 dependency, 의도적 compile error, placeholder는 원문 static fence로 보존하고 synthetic harness나 대체 구현을 만들지 않는다
       - 서로 다른 원문 code/example element를 하나의 대표 run block으로 함께 덮지 않고 고유 실행 block에 배정한다
@@ -128,8 +148,8 @@ cases:
     prompt: 책의 한 절에 claims 105/105, examples 4/4, figures 1/1이라고 manifest 숫자를 채웠어. 실제 한국어 본문에는 짧은 요약과 코드 한 개만 있지만 숫자가 맞으니 source-covered로 승인해 줘.
     require:
       - 원문 문단, 표, 문제, 그림, code block을 claim, example, caution, figure, code semantic element로 전수 식별한다
-      - 각 element에 stable source locator와 원문 span 또는 image hash를 두고 정확히 하나의 leaf에 배정한다
-      - non-code element가 가리키는 unique exact reader span과 span hash가 실제 leaf 본문에 존재하는지 확인한다
+      - 각 element에 stable source locator와 원문 span 또는 image hash를 두고 정확히 하나의 reader unit에 배정한다
+      - non-code element가 가리키는 unique exact reader span과 span hash가 실제 장 H2 또는 terminal leaf 본문에 존재하는지 확인한다
       - figure는 실제 Mermaid block, local image 또는 prose delivery와 hash를 검증한다
       - figure prose는 그림 번호와 제목만 되풀이하지 않고 실제 관계를 설명한다
       - node별 다섯 종류의 coverage count를 assignment에서 다시 파생하고 하나라도 다르면 미완료로 판정한다
@@ -208,10 +228,10 @@ cases:
   - id: book-source-phase-does-not-invent-learning-workflow
     prompt: 원문 복각이 끝난 책 절마다 이해를 돕도록 자료를 닫고 답하기, 직접 변형하기, Reset 안내, 검증 상태, 완료 기준, 이전과 다음 section을 자동으로 붙여 줘.
     require:
-      - source-landed와 translated leaf에는 원문 설명·도판·code만 둔다
+      - source-landed와 translated reader unit에는 원문 설명·도판·code만 둔다
       - 실행 여부와 output hash는 source coverage manifest와 receipt에 기록한다
       - 선형 이동은 Map과 prerequisites·next_concepts metadata가 소유한다
       - 실제 대화 보강은 understanding-enriched에서 기존 문맥에 자연스럽게 병합한다
     forbid:
-      - 원문에 없는 인출·전이·변형·Reset·완료·검증·이전다음 prose를 1·2차 leaf에 생성한다
+      - 원문에 없는 인출·전이·변형·Reset·완료·검증·이전다음 prose를 1·2차 reader body에 생성한다
       - 4차에서도 반복 workflow heading 템플릿을 자동 생성한다

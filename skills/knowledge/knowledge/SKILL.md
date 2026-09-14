@@ -8,7 +8,7 @@ description: private woon-knowledge에서 정본 문서를 검색·조회·감�
 `woon-knowledge`를 private canonical source로 유지한다. MCP는 상시 로드하지 않고 지식 작업에서만 on-demand로 사용한다.
 
 - 찾기: 안정적인 한국어·technical keyword로 `woon_knowledge_search`. 결과를 고를 때 `canonical_id`·title·aliases·keywords·중심 질문을 함께 보고, 선택한 leaf의 ancestor path·직접 child·최근 이력·필요한 evidence를 context bundle로 읽는다.
-- compiler receipt 또는 source-schema stale: `woon_knowledge_compile`을 호출하고 동일 검색을 한 번 재시도한다. index generation만 stale이면 `woon_knowledge_reindex` MCP를 호출한 뒤 동일 검색을 한 번 재시도한다. `woon knowledge index` CLI나 경로를 생략한 default vault fallback은 사용하지 않는다.
+- `search.freshness: document`에서는 마지막 검증 색인을 조회하고 결과별 `freshness`와 `verification_state`를 확인한다. `stale-snapshot`·`stale-inputs`·`unverified-*` 결과는 현재 근거로 확정하지 않는다. 무관한 문서 때문에 전체 compile을 실행하지 않는다. index가 없거나 strict 검색의 generation만 stale이면 `woon_knowledge_reindex` MCP를 사용한다. compiler stale은 해당 담당 작업에서 source·claim·page spec과 의존 범위를 수정한 뒤 compile한다. `woon knowledge index` CLI나 경로를 생략한 default vault fallback은 사용하지 않는다.
 - canonical 결과: 선택한 `canonical_id`를 `woon_knowledge_get`으로 전체 조회.
 - read-only corpus 결과: 반환된 `document_id`와 `chunk_id`를 `woon_knowledge_read_excerpt`로 필요한 문맥만 조회. corpus 원본을 canonical로 가장하거나 수정하지 않는다.
 - 다른 산출물의 근거로 넘길 때는 `canonical_id`·revision·source type·현재 재검증 여부를 함께 기록한다. 검색 결과를 공개 문장으로 바로 바꾸거나 오래된 기록을 현재 사실로 승격하지 않는다.

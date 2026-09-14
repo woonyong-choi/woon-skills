@@ -65,7 +65,6 @@ def audit_site_promotion(root: Path) -> list[str]:
             "claim ledger",
             "canonical_id",
             "승격 계약",
-            "좋아",
             "commit·push·deploy",
         ),
         references["promotion"]: (

@@ -5,7 +5,7 @@ description: Kotlin in Action, Second Edition 전체를 14일 안에 시작·재
 
 # Kotlin in Action 14 Days
 
-`Kotlin in Action` 16개 장을 14일 동안 순서대로 다루되, 읽은 분량이 아니라 도움 없이 설명하고 실행하고 변형한 증거로 진도를 판정한다. 이 skill은 Kotlin 교재 내용을 복제하지 않고 14일 과정만 조정한다. 실제 질문·인출·피드백 루프에는 반드시 `$guided-learning`을 함께 적용한다.
+`Kotlin in Action, Second Edition` 18개 장을 14일 동안 순서대로 다루되, 읽은 분량이 아니라 도움 없이 설명하고 실행하고 변형한 증거로 진도를 판정한다. 이 skill은 Kotlin 교재 내용을 복제하지 않고 14일 학습 프로젝트만 조정한다. 실제 질문·인출·피드백 루프에는 반드시 `$guided-learning`을 함께 적용한다.
 
 ## 정본과 실행 공간
 
@@ -18,7 +18,7 @@ Woon을 사용할 수 있으면 `$knowledge`로 아래 정본을 먼저 읽는�
 - 다섯 역할의 근거: `ai/ai-supported-self-directed-learning`
 - 인출·전이 판정: `ai/retrieval-practice-and-transfer`
 
-진도·현재 이해·오답 원인·다음 질문은 `personal/projects/kotlin-in-action-14-days`의 학습 체크포인트 하나가 소유한다. 장별로 재사용할 수 있을 만큼 검증된 개념만 기존 chapter canonical에 병합한다. 책 reader body에 `직접 확인하기`, `자료를 닫고 답하기`, `이전과 다음`, `완료 기준`, `검증 상태` 같은 진도·평가 section을 만들지 않는다. 대화 전문, 역할별 메모와 매일의 별도 진도 문서를 만들지 않는다.
+진도·현재 이해·오답 원인·다음 질문은 `personal/projects/kotlin-in-action-14-days`의 학습 체크포인트 하나가 소유한다. 이 프로젝트는 책과 현재 절을 참조하지만 책의 child가 아니며, 책 목차도 프로젝트를 child로 소유하지 않는다. 장별로 재사용할 수 있을 만큼 검증된 개념과 사용자 오개념 보강만 4차 `understanding-enriched`에서 [책 독자 화면과 개인 각주 계약](repo://skills/skills/knowledge/compile-knowledge/references/book-workflow.md#독자-화면과-개인-각주)에 따라 해당 reader unit에 provenance와 함께 연결한다. 책 reader body에 `직접 확인하기`, `자료를 닫고 답하기`, `이전과 다음`, `완료 기준`, `검증 상태` 같은 진도·평가 section을 만들지 않는다. 대화 전문, 역할별 메모와 매일의 별도 진도 문서를 만들지 않는다.
 
 Kotlin 코드와 test는 기존 학습 저장소를 먼저 찾는다. 없으면 첫 실습이 필요한 Day에만 저장소 규칙과 현재 toolchain을 확인해 실행 가능한 최소 학습 저장소를 만든다. 빈 repository나 실행하지 않은 예제는 진도 증거가 아니다.
 
@@ -26,11 +26,11 @@ Kotlin 코드와 test는 기존 학습 저장소를 먼저 찾는다. 없으면 
 
 현재 장의 근거는 사용자가 보유한 영문·한국어판 본문, Manning 공식 liveBook·excerpt, 출판사·Kotlin 공식 예제와 문서 순으로 고른다. 인터넷에 있는 비공식 완본 PDF를 찾거나 저장하지 않는다.
 
-사용자 보유 eBook이 로컬에 있으면 외부 서비스로 전송하지 않고 현재 Day에 필요한 범위만 읽는다. 추출물·OCR은 검토 근거이며 Wiki 정본이 아니다. 한국어로 남길 때는 장 전체를 번역·복제하지 않고, 사용자가 설명·실습·전이를 통과한 개념, 오답 원인, 적용 경계와 출처만 해당 chapter canonical에 병합한다.
+사용자 보유 eBook이 로컬에 있으면 외부 서비스로 전송하지 않고 현재 Day에 필요한 범위만 읽는다. 추출물·OCR은 검토 근거이며 Wiki 정본이 아니다. 한국어 book reader unit은 원문 coverage 계약에 따라 책의 논리·주장·예제·주의를 보존한다. 학습 세션은 이를 다시 축약하거나 교체하지 않는다. 사용자가 설명·실습·전이를 거치며 드러낸 오답 원인·반례·적용 경계만 별도 provenance의 보강 claim으로 해당 reader unit의 개인 각주에 연결한다.
 
 ## 다섯 학습 파트너
 
-사용자가 요청한 다섯 파트너는 같은 작업 안에서 다음 책임을 분리한다. 첫 시작에는 이름과 오늘 맡을 일을 한 번 보여 주되, 이후에는 다섯 개의 장문 답변을 이어 붙이지 말고 하나의 학습 흐름으로 병합한다.
+다섯 파트너는 같은 작업 안에서 다음 책임을 구분한다. 역할 설명을 요청한 경우에만 이름과 오늘 맡을 일을 보여 주고, 기본 응답은 오늘 목표와 첫 질문으로 시작한다. 다섯 개의 장문 답변이나 역할별 기록을 만들지 않는다.
 
 1. **Advisor** — 14일 도착점, 오늘 범위, 선행 개념과 통과 기준을 정한다.
 2. **Librarian** — 현재 chapter, 교재, Wiki와 실제 code 중 오늘 필요한 작은 근거 묶음만 고른다.
@@ -50,18 +50,18 @@ Kotlin 코드와 test는 기존 학습 저장소를 먼저 찾는다. 없으면 
 | 2 | Ch 2 | 기본 문법과 표현식으로 작은 프로그램 만들기 |
 | 3 | Ch 3 | 함수 정의·호출과 확장 함수 적용 |
 | 4 | Ch 4 | class·object·interface의 설계 경계 |
-| 5 | Ch 5 | lambda와 함수형 변환 |
-| 6 | Ch 6 | collection·sequence 선택과 지연 평가 |
-| 7 | Ch 7 | nullability와 첫 주 통합 문제 |
-| 8 | Ch 8–9 | 기본 타입·collection·array와 convention 연결 |
-| 9 | Ch 10 | higher-order function과 제어 흐름 추상화 |
-| 10 | Ch 11 | generics와 variance 경계 |
-| 11 | Ch 12–13 | annotation·reflection과 DSL 적용 |
-| 12 | Ch 14 | coroutine 기본 동작과 suspension |
-| 13 | Ch 15 | structured concurrency와 실패·취소 전파 |
-| 14 | Ch 16 | Flow와 전체 과정 통합 산출물 |
+| 5 | Ch 5–6 | lambda, collection·sequence와 지연 평가 |
+| 6 | Ch 7–8 | nullability, 기본 타입·collection·array |
+| 7 | Ch 9 | operator convention과 언어 확장 경계 |
+| 8 | Ch 10 | higher-order function과 제어 흐름 추상화 |
+| 9 | Ch 11 | generics와 variance 경계 |
+| 10 | Ch 12–13 | annotation·reflection과 DSL 적용 |
+| 11 | Ch 14 | coroutine 기본 동작과 suspension |
+| 12 | Ch 15–16 | structured concurrency, Flow 생성과 수집 |
+| 13 | Ch 17 | Flow operator와 실행 context·backpressure |
+| 14 | Ch 18 | 오류 처리·테스트와 전체 과정 통합 산출물 |
 
-Day 8과 Day 11은 두 장을 묶으므로 작은 개념 목록을 먼저 나누고 각각 실행 증거를 남긴다. 진도가 밀렸다고 남은 장을 더 합치거나 읽기 완료로 처리하지 않는다. 14일 목표가 위험해지면 완료를 가장하지 말고 남은 Day와 불안정한 개념을 먼저 보고한다.
+두 장을 묶는 Day 5·6·10·12는 장별 작은 개념 목록을 먼저 나누고 각각 실행 증거를 남긴다. 진도가 밀렸다고 남은 장을 더 합치거나 읽기 완료로 처리하지 않는다. 14일 목표가 위험해지면 완료를 가장하지 말고 남은 Day와 불안정한 개념을 먼저 보고한다.
 
 ## 하루 세션
 
@@ -91,9 +91,9 @@ Day 8과 Day 11은 두 장을 묶으므로 작은 개념 목록을 먼저 나누
 - 예제의 입력·제약·표현 중 하나를 바꾼 문제를 다시 해결한다.
 - 실행 결과와 실패 원인을 다음 사람이 재현할 수 있게 가리킨다.
 
-하나라도 없으면 `부분 이해` 또는 `다시 연습`으로 남긴다. Day 14의 완료는 16개 장의 체크포인트, 실행 가능한 통합 산출물, 이전 오답을 섞은 누적 인출과 새로운 조건의 전이 문제를 모두 통과했을 때만 인정한다. 책을 끝까지 읽거나 AI 답을 다시 말한 사실은 완료 증거가 아니다.
+하나라도 없으면 `부분 이해` 또는 `다시 연습`으로 남긴다. Day 14의 완료는 18개 장의 체크포인트, 실행 가능한 통합 산출물, 이전 오답을 섞은 누적 인출과 새로운 조건의 전이 문제를 모두 통과했을 때만 인정한다. 책을 끝까지 읽거나 AI 답을 다시 말한 사실은 완료 증거가 아니다.
 
-세션이 통과·중단되면 `$guided-learning`의 학습 체크포인트 계약을 사용해 `personal/projects/kotlin-in-action-14-days`만 갱신한다. writer·compiler·test가 실패하면 학습 결과와 영구 기록 실패를 분리해 보고한다.
+세션이 통과·중단되면 `$guided-learning`의 학습 체크포인트 계약을 사용해 `personal/projects/kotlin-in-action-14-days`만 갱신한다. book reader unit의 owner page는 새로 확인된 보강이 있을 때만 별도 optimistic revision으로 갱신한다. writer·compiler·test가 실패하면 학습 결과와 영구 기록 실패를 분리해 보고한다.
 
 ## 범위 경계
 
