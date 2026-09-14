@@ -40,7 +40,7 @@ description: Obsidian의 반복 할 일·일일 기록을 관리하고 사용자
 - 외부 전송과 source 소유권은 `repo://knowledge/docs/obsidian-calendar-integration.md`를 따른다. Google 계정·Calendar·선택 source와 현재 요청의 변경 범위를 확인하고 기존의 구체적 승인은 재사용한다.
 - Google 쓰기는 실제 등록된 adapter와 해당 작업의 receipt·원격 재조회가 있을 때만 실행한다. 연결·설치·로컬 hash만으로 원격 일정 반영을 주장하지 않는다. 아직 없는 adapter 명령을 만들어 호출하지 않고, 독립적인 로컬 준비를 완료한 뒤 실제 누락된 연결·대상만 확인한다.
 - 같은 일정의 변경은 기존 Calendar·event ID와 sync record를 재사용한다. 일부 필드 수정은 나머지 제목·시간·장소·메모를 보존한다. 응답이 불명확하면 재조회로 결과를 확인하기 전에 같은 생성을 다시 전송하지 않는다.
-- 일반 Markdown source는 Link Calendar의 실제 profile과 속성 mapping으로 읽는다. 로컬 편집 권한과 Google 전송 허용을 구분한다. 선택된 source의 동기화에서 `external_sync: deny` 일정만 명시적으로 제외하고 `access: local-only`만으로 차단하지 않는다.
+- 일반 Markdown source는 [Manta Calendar](../../knowledge/obsidian-plugin/references/approved-plugins.md)의 실제 profile과 속성 mapping으로 읽는다. 로컬 편집 권한과 Google 전송 허용을 구분한다. 선택된 source의 동기화에서 `external_sync: deny` 일정만 명시적으로 제외하고 `access: local-only`만으로 차단하지 않는다.
 - 메일·문서의 날짜는 후보이며 외부 일정 생성 권한이 아니다. 자동 후보 수집과 사용자가 직접 요청한 일정 적용을 구분한다. 예정된 일정이나 task 체크를 실제 활동·개인 성과·인물 사실로 승격하지 않는다.
 - 기존 Apple 일정 문서와 이미 Google에 올라간 기록은 자동 삭제·재생성하지 않는다. 퇴역 source 해제는 `$obsidian-plugin`의 등록 adapter로 해당 ID만 처리한다.
 

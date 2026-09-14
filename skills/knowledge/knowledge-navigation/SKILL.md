@@ -34,7 +34,7 @@ description: Woon Wiki의 단일 계층형 키워드 트리, 하위 문서 색�
 - `콘텐츠` subtree와 Facet은 만들지 않는다. 강의·글·영상에서 얻은 의미는 기존 주제 Wiki에 흡수하고, 외부 원자료와 PDF·이미지·전사는 `Wiki → 리소스 → 분야 텍스트 → 원자료 링크`로만 색인한다. 같은 출처·대상·용도라는 이유로 중간 bundle 문서를 만들지 않는다.
 - 책이 아닌 외부 자료의 의미 부모나 `resource_keyword`를 확정할 수 없으면 중간 콘텐츠 카드를 만들지 않고 Review로 보낸다. Novel·민감 자료는 일반 리소스 Graph에 중복 노출하지 않는다.
 - 프로젝트 entity는 목표·완료 조건, 요구사항, 설계, 결정, 구현, 검증, 결과, 남은 문제를 subtree와 본문으로 관리한다.
-- 인물 hub의 직접 child는 사람 이름의 person entity뿐이다. root 직속 인물 hub(`canonical_id: people/README`)는 `navigation_order: title`을 유지하고 H1 아래에 `- ㄱ` 같은 초성 일반 불릿과 그 아래 들여쓴 사람 wikilink를 표시한다. 빈 초성은 생략하고, NFC 정규화한 이름의 초성순·묶음 안 가나다순을 사용한다. 한글이 아닌 이름은 첫 글자로 묶는다. 초성은 표시 묶음뿐이므로 새 페이지·parent·H2를 만들지 않으며 기존 인물 identity·실제 parent·개인정보 scope를 보존한다. 이 인덱스는 자식 sequence를 요구하지 않고 `navigation_groups`를 함께 선언하지 않는다. native 본문과 AI context의 인물 링크 순서는 같아야 하며 context에도 가짜 초성 문서를 만들지 않는다. Linked Graph는 생성된 본문 링크 순서를 읽으므로 metadata만 바꾸고 본문을 남기지 않는다. 다른 hub의 그룹·sequence 규칙은 유지한다. 인물 entity는 아래 카테고리별 흐름에 관계·프로젝트·결정·대화·자료를 통합하며 주제 링크와 별도 이력에 같은 내용을 반복하지 않는다. 날짜만을 위한 별도 히스토리 문서를 만들지 않는다. 사람 이름과 특정 분석 제목을 별도 인물처럼 병렬로 두지 않는다. 이름 한 번의 언급으로 entity를 만들지 않는다.
+- 인물 hub의 직접 child는 사람 이름의 person entity뿐이다. root 직속 인물 hub(`canonical_id: people/README`)는 `navigation_order: title`을 유지하고 H1 아래에 `- ㄱ` 같은 초성 일반 불릿과 그 아래 들여쓴 사람 wikilink를 표시한다. 빈 초성은 생략하고, NFC 정규화한 이름의 초성순·묶음 안 가나다순을 사용한다. 한글이 아닌 이름은 첫 글자로 묶는다. 초성은 표시 묶음뿐이므로 새 페이지·parent·H2를 만들지 않으며 기존 인물 identity·실제 parent·개인정보 scope를 보존한다. 이 인덱스는 자식 sequence를 요구하지 않고 `navigation_groups`를 함께 선언하지 않는다. native 본문과 AI context의 인물 링크 순서는 같아야 하며 context에도 가짜 초성 문서를 만들지 않는다. [Manta Graph](../obsidian-plugin/references/approved-plugins.md)는 생성된 본문 링크 순서를 읽으므로 metadata만 바꾸고 본문을 남기지 않는다. 다른 hub의 그룹·sequence 규칙은 유지한다. 인물 entity는 아래 카테고리별 흐름에 관계·프로젝트·결정·대화·자료를 통합하며 주제 링크와 별도 이력에 같은 내용을 반복하지 않는다. 날짜만을 위한 별도 히스토리 문서를 만들지 않는다. 사람 이름과 특정 분석 제목을 별도 인물처럼 병렬로 두지 않는다. 이름 한 번의 언급으로 entity를 만들지 않는다.
 - 모든 인물의 본문은 `H1 사람 이름 → 짧은 확인된 신상·현재 설명 → 내용이 있는 카테고리`를 따른다. 카테고리의 대표 키워드는 최근 의미 있는 갱신일 내림차순이며, 같은 canonical 키워드를 갱신하면 날짜와 본문 위치를 함께 바꾼다. 그 안의 세부 사건·녹음·문서는 발생 시기의 과거→최근순이다. 이번 작업에서 실제로 의미 있게 갱신한 키워드는 저장 날짜가 같은 날이어도 확인된 갱신 순서에 따라 카테고리 맨 위로 이동하며 본문과 해당 navigation 순서를 함께 맞춘다. 과거 항목끼리 같은 갱신일이고 시각·갱신 선후도 확인할 수 없을 때만 기존 순서를 유지한다. 이를 위해 새 timestamp 속성이나 추정 시각을 만들지 않는다. 발생 시기와 키워드 갱신일을 구분하고 compile·reindex·배포·서식·mtime을 갱신 근거로 삼지 않는다. 모든 인물의 카테고리명·날짜 표기·불명 날짜·대표 항목과 세부 링크 깊이는 [인물 공통 계약](repo://knowledge/docs/person-knowledge-schema.md#인물-페이지의-공통-구조와-정렬)을 따른다. 빈 카테고리·wrapper를 만들지 않으며 인물·캐릭터에 별도 최신 문서 목록을 만들지 않는다.
 - 민감한 사건·감정·해석은 기존 비공개 관계 기록에서 읽는다. 같은 시기라는 이유로 독립 사건의 ID·본문을 합치지 않으며 실제 사건의 단일 parent와 창작의 횡단 참조를 보존한다. `history_person_id`, 확인된 `event_people`·`event_period`·`sequence`로 파생한 연표와 Base·DQL은 보조 조회다. 정본 metadata·명시 관계를 공유하고 표·수동 흐름의 요지와 날짜를 원본 사건과 별개로 편집하지 않는다.
 - 질문과 답변은 관련 키워드 본문에 둔다. 질문 자체가 계속 갱신되는 독립 정체성일 때만 detail child로 분리한다.
@@ -42,8 +42,8 @@ description: Woon Wiki의 단일 계층형 키워드 트리, 하위 문서 색�
 ## 파생 화면 경계
 
 - `maps/`에는 `.canvas`와 plugin profile 같은 화면 상태만 둘 수 있다. Markdown Map, 별도 키워드 목록, 독립 시작 노트를 만들지 않는다.
-- Global Graph는 `graph/overview` tag가 있는 root·hub·entity만 보여 준다. leaf는 현재 페이지의 subtree, Local Graph, Linked Graph에서 연다.
-- `.base`, Canvas, Linked Graph는 Wiki metadata와 실존 wikilink를 읽는다. 화면에만 존재하는 제목·답변·관계·순서를 만들지 않는다.
+- Global Graph는 `graph/overview` tag가 있는 root·hub·entity만 보여 준다. leaf는 현재 페이지의 subtree, Local Graph, Manta Graph에서 연다.
+- `.base`, Canvas, Manta Graph는 Wiki metadata와 실존 wikilink를 읽는다. 화면에만 존재하는 제목·답변·관계·순서를 만들지 않는다.
 - 한 문서의 code·실행·상태 관계를 설명하는 canonical 시각화는 `$diagram`의 Markdown Mermaid다.
 
 ### Graph 색상 계약
@@ -56,7 +56,7 @@ description: Woon Wiki의 단일 계층형 키워드 트리, 하위 문서 색�
 4. 현재 `domain: concepts`인 옛 개념 입구 아래의 미편입 개발 문서, 승인된 root 밖의 문서와 해결되지 않은 parent는 회색이다. 새 정본 parent로 이동하면 파생색도 바뀐다. 아직 색인하지 않은 노드는 host의 기본 회색·흰색을 유지한다.
 5. Graph query는 현재 parent 분류와 확인된 reader·책별 리소스 등록의 정확한 경로를 파생한다. 빨강 query에서는 승인된 책·책별 리소스 경로만 제외하고 해당 색 query는 private 여부로 제외하지 않는다. 나머지 색 query에는 private 제외 조건을 유지하여 색상 그룹이 중첩되지 않게 한다. 검색 필터·overview 범위·줌·forces는 색과 별개이며 색 변경만으로 수정하지 않는다.
 
-Native Graph 색상 설정은 아래 등록 adapter로 적용한다. Local Graph와 Linked Graph도 분야색을 구현할 때 같은 정본 판정을 따라야 하지만 각각의 설치·화면 반영은 담당 구현과 실제 화면에서 따로 확인한다. 색은 node dot에 적용하고 제목은 host text color를 유지한다. 검색 query는 [Obsidian 공식 Search 문법](https://help.obsidian.md/plugins/search)을 따른다.
+Native Graph 색상 설정은 아래 등록 adapter로 적용한다. Local Graph와 Manta Graph도 분야색을 구현할 때 같은 정본 판정을 따라야 하지만 각각의 설치·화면 반영은 담당 구현과 실제 화면에서 따로 확인한다. 색은 node dot에 적용하고 제목은 host text color를 유지한다. 검색 query는 [Obsidian 공식 Search 문법](https://help.obsidian.md/plugins/search)을 따른다.
 
 책 원문 등록은 `repo://knowledge/config/obsidian-navigation.json`의 `graph.book_source_registry`가 가리키는 기존 책 담당 registry 하나를 읽는다. 참조는 Vault 상대 경로이며 별도의 Graph 파일 목록을 만들지 않는다. 책 record의 `resource_archive`는 `role: book-source-archive`, `source_language: en`, 정확한 archive `root`와 `files[].path`, `kind`, `sha256`를 소유한다. producer는 `private/knowledge/local-only/resources/books` 안의 실존 파일과 hash를 확인하고 등록된 원문 Markdown·PDF·asset만 색에 반영한다. 등록이 미완료이거나 hash·경로·중복·symlink 검사가 실패하면 색 설정과 성공 receipt를 변경하지 않는다. 이 registry 참조를 Obsidian의 `graph.json` 설정 키로 복사하지 않는다.
 
