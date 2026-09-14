@@ -47,7 +47,9 @@ README·Community의 기본 매체는 `![행동과 결과 설명](intro.gif)`다
   양자화를 사용한다. 일반 영상의 `--video` 경로를 UI 원색 보존 검증으로 재사용하지 않는다.
 - PNG sequence는 `frame_000001.png`부터 시작한다. Alpha export가 root 배경을 제거했는지
   확인하고 원래 canvas를 합성한다. `--background`는 실제 단색 canvas용이며, gradient나
-  이미지 배경을 임의 단색으로 바꾸는 옵션이 아니다. 크기·길이는 입력을 따른다.
+  이미지 배경을 임의 단색으로 바꾸는 옵션이 아니다. RGB MP4는 입력 PNG의 해상도를
+  유지하고, GIF는 종횡비를 유지한 가로 1200px·25fps로 만든다. 길이는 입력 타임라인을
+  기준으로 한다.
 - [RGB lossless MP4](https://ffmpeg.org/ffmpeg-codecs.html#libx264_002c-libx264rgb)는 편집용이다.
   색 정확성과 재생 호환성을 구분한다. 납품 GIF/MP4를 다시 디코딩해 지정한 단색 영역의
   실제 RGB, 작은 글자·선, 대표 동작과 seam을 확인한다. 중요 배경은 모든 프레임을
