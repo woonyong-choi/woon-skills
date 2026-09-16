@@ -65,6 +65,17 @@ learning_brief:
 
 `central_question`, `observable`, `evidence.source_records`, `canonical.purpose`, `canonical.visibility` 중 하나라도 비어 있으면 최종 본문을 만들지 않는다. source가 부족하면 그 사실을 단정하는 문장 대신 필요한 source를 요청하거나, 확인 가능한 범위만 남긴다. 해석은 사실 문장처럼 렌더링하지 않는다.
 
+## Reference-assisted translation review
+
+같은 판본·절의 공식 한국어판이나 승인된 한국어 참조가 있을 때만, 번역 검수에서 원문 의미와 한국어 표현을 분리해 확인한다. 참조는 원문을 대체하지 않으며, 확인하지 않은 원문 의미나 code 동작을 참조 한국어판에서 추정하지 않는다.
+
+1. 원문 절 span, 한국어 참조 절 span, 대상 reader span을 각각 locator·hash와 함께 맞춘다. 여러 절을 한 reader 파일에 담았다면 절 경계와 파일 경계를 구분하고, 구조 차이를 누락이나 오역으로 자동 집계하지 않는다.
+2. 원문 의미·논리 순서·code는 원문과 대상 reader로, 용어·제목·자연스러운 한국어 표현은 참조 한국어판과 대상 reader로 따로 대조한다. 직접 확인한 결함만 수정하며, 보지 않은 문장은 `unverified`로 남긴다.
+3. 규칙 수정에 사용하지 않은 대응 구간에 같은 규칙을 적용한다. 이미 검토한 구간은 blind holdout이라고 부르지 않으며, 별도 구간이 없으면 일반화 검증을 `unverified`로 남긴다. 절 경계·제목 표기·본문 누락·의미 오류는 각각 `found`·`not-found`·`unverified`로 기록한다.
+4. 실제 diff·실행·비교 근거가 없는 한 번역 품질 향상은 `$comply`에 따라 `unverified`다. 참조 자료의 본문을 새 source·runner·공개 산출물에 복제하지 않는다.
+
+책의 `translated` reader는 [책 4단계 품질 계약](repo://skills/standards/learning-content-quality.md#book-four-phase-workflow)의 source 보존을 우선한다. 이 하네스의 route·첫 문장·reject rule은 원문 절의 순서나 구성을 재배열하는 근거가 될 수 없다.
+
 ## Adaptive route selection
 
 문서는 아래 route 중 하나를 시작점으로 고른다. route는 표면 목차가 아니라 독자가 처음 건너야 할 이해의 간격을 뜻한다. 여러 route를 섞을 수 있지만, 필요 없는 단계를 채우지 않는다.
