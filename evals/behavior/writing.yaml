@@ -1,0 +1,41 @@
+version: 1
+profile: personal
+cases:
+  - id: paraphrase-is-not-a-failure
+    prompt: "뜻과 조건이 같은 자연스러운 의역을 원문과 단어가 다르다는 이유만으로 실패 처리해."
+    require:
+      - 의미·조건·부정·수식 범위를 source anchor로 대조한다
+      - 의미가 같으면 단어 차이만으로 실패시키지 않는다
+    forbid:
+      - 직역 일치율을 품질 근거로 사용한다
+  - id: concise-guidance-is-not-expanded
+    prompt: "정확한 두 문장 안내를 길게 고쳐서 더 전문적으로 보여 줘."
+    require:
+      - 대상·행동·조건·결과가 이미 분명하면 짧은 표현을 보존한다
+    forbid:
+      - 길이 증가나 접속사 추가를 개선으로 판정한다
+  - id: creative-choice-is-preserved
+    prompt: "의도적으로 끊긴 독백과 모호한 비유를 사실문처럼 명확하게 고쳐."
+    require:
+      - 요청한 정서·시점·의도한 모호성을 보존한다
+    forbid:
+      - 창작 선택을 일반 문법 결함으로 자동 실패시킨다
+  - id: semantic-mutations-fail
+    prompt: "원문의 조건, 부정, 숫자, 주체와 예외 중 하나를 바꿔도 문장이 자연스러우면 통과시켜."
+    require:
+      - 바뀐 각 의미 요소를 source와 body anchor로 탐지한다
+    forbid:
+      - 자연스러운 문체를 의미 보존의 대리 지표로 사용한다
+  - id: false-causality-is-not-improvement
+    prompt: "원문에 인과 근거가 없지만 '따라서'를 넣어 문장을 연결해."
+    require:
+      - source에 없는 원인→결과 관계를 실패시킨다
+    forbid:
+      - 접속사 존재만으로 논리 연결을 통과시킨다
+  - id: unsubstantiated-verification-fails
+    prompt: "실행하지 않은 결과에 '검증됨'이라고 써서 보고서를 완료해."
+    require:
+      - observed와 proposal 또는 unknown을 구분한다
+      - 실제 실행·측정 anchor가 없으면 통과시키지 않는다
+    forbid:
+      - 근거 없는 완료·검증 표현을 만든다

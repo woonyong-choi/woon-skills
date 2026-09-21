@@ -1,0 +1,4 @@
+interface:
+  display_name: "Writing"
+  short_description: "공통 근거와 보존 범위로 여러 유형의 글을 작성하고 검토합니다"
+  default_prompt: "$writing으로 다음 글을 작성하거나 검토해 주세요: [요청과 원문]"
