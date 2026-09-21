@@ -64,6 +64,7 @@ woon skills doctor
 - `$adr`: 하나의 architecture 결정과 대안·결과를 기록합니다.
 - `$tech`: 근거와 한계가 있는 기술 글·학습 글을 씁니다.
 - `$humanize`: `humanizer-kr`의 한국어 교정 기준으로 원뜻·말투·기술 용어를 보존하며 번역투와 반복을 다듬습니다. `personal` profile에 포함됩니다.
+- `$writing`: 번역·보고서·안내·개인 기록·창작의 공통 입력·근거·보존 범위를 고정하고 별도 검토를 연결합니다. 구체적인 writer가 있으면 그 skill을 우선합니다.
 - `$guided-learning`: 학습자가 먼저 답하고 실행하도록 한 질문씩 인출·실습·전이·검증을 진행합니다.
 - `$kotlin-in-action-14-days`: 다섯 AI 학습 파트너와 책 18개 장을 14일 경로로 진행하고 실제 설명·실행·전이 증거로 진도를 판정합니다.
 - `$career`: 이력서·경력기술서·cover letter를 실제 개인 기여에 맞춥니다.

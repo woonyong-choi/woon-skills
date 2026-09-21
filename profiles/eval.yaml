@@ -1,7 +1,7 @@
 version: 1
 name: eval
 installable: false
-max_active: 80
+max_active: 83
 skills:
   - skills/ai/agent-audit
   - skills/architecture/domain
@@ -85,3 +85,4 @@ skills:
   - skills/writing/site-promotion
   - skills/writing/tech
   - skills/writing/humanize
+  - skills/writing/writing

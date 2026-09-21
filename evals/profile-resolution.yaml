@@ -244,6 +244,7 @@ cases:
       - skills/learning/kotlin-in-action-14-days
       - skills/productivity/tasks
       - skills/writing/humanize
+      - skills/writing/writing
     reject_skills:
       - skills/knowledge/publish
       - skills/github/release

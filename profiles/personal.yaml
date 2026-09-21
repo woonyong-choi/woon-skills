@@ -1,6 +1,6 @@
 version: 1
 name: personal
-max_active: 20
+max_active: 21
 skills:
   - skills/common/safety
   - skills/common/refactor
@@ -22,3 +22,4 @@ skills:
   - skills/research/research-library
   - skills/writing/tech
   - skills/writing/humanize
+  - skills/writing/writing
