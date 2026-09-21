@@ -67,7 +67,7 @@ jobs:
           echo "ref=$commit" >> "$GITHUB_OUTPUT"
       - uses: actions/checkout@v7
         with:
-          repository: woonyong-kr/woon-core
+          repository: woonyong-choi/woon-core
           ref: ${{ steps.toolchain.outputs.ref }}
           path: woon/woon-core
       - name: Install locked woon

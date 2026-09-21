@@ -143,7 +143,7 @@ python3 scripts/gh_readme.py update --section env|usage|features
 `~/.config/skills/github.env` 파일로 기본 저장소를 설정합니다.
 
 ```bash
-GITHUB_DEFAULT_OWNER=woonyong-kr
+GITHUB_DEFAULT_OWNER=woonyong-choi
 GITHUB_DEFAULT_REPO=my-repo
 ```
 
