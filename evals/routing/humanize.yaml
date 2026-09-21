@@ -10,15 +10,15 @@ cases:
   - id: book-prose-keeps-canonical-owner
     prompt: "이미 정리된 책 Wiki의 한국어 문장을 humanizer-kr 기준으로 고쳐서 정본에도 반영해 줘. 원문과 코드, 인용은 보존해."
     profiles: [eval]
-    expect_primary: humanize
-    allow_support: [compile-knowledge, tech]
+    expect_primary: compile-knowledge
+    allow_support: [humanize, tech]
     reject: [publish, ingest, guided-learning]
     max_selected: 3
   - id: new-technical-explanation-is-tech
     prompt: "Kotlin의 예외 전파를 실행 결과와 공식 문서 근거로 설명하는 학습 글을 처음부터 작성해 줘."
     profiles: [eval]
     expect_primary: tech
-    allow_support: [humanize, diagram]
+    allow_support: [humanize, diagram, lookup]
     reject: [archive, publish, guided-learning]
     max_selected: 3
   - id: graph-orphans-are-navigation

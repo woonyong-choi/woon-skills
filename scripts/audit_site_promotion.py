@@ -28,7 +28,7 @@ REQUIRED_ROUTING = {
     "portfolio-ui-code-not-promotion": "react",
     "architecture-diagram-only-not-promotion": "diagram",
     "review-existing-blog-not-promotion": "tech",
-    "ambiguous-praise-is-not-approval": "tech",
+    "ambiguous-praise-is-not-approval": "humanize",
     "public-project-selection-only": "site-promotion",
 }
 REQUIRED_BEHAVIOR = {

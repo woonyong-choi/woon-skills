@@ -130,7 +130,7 @@ cases:
   - id: ambiguous-praise-is-not-approval
     prompt: "아까 만든 공개 블로그 초안은 좋아. 파일 반영은 하지 말고 문장만 더 자연스럽게 다듬어 줘"
     profiles: [eval]
-    expect_primary: tech
+    expect_primary: humanize
     allow_support: []
     reject: [site-promotion, publish, commit]
     max_selected: 1

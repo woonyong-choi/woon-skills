@@ -1,9 +1,11 @@
 ---
 name: archive
-description: archive MCP payload·body를 만들거나 private woon-knowledge에 저장·병합할 때 반드시 사용한다. JSON만 요청해도 frontmatter·H1 소유권, canonical 관계 ID, Obsidian 호환 계약을 지킨다.
+description: 원자료·대화를 archive MCP payload로 private woon-knowledge에 접수·저장·병합할 때 사용한다. 대화의 이해·보충이어도 기존 compiler Wiki 절·본문 변경이면 compile-knowledge가 primary이며, 별도 source intake 요청일 때만 archive를 함께 쓴다.
 ---
 
 # Archive
+
+독자가 읽을 본문을 새로 쓰거나 실질적으로 고칠 때는 [공통 작성 품질 계약](repo://skills/standards/writing-quality.md)의 입력·anchor·별도 검토를 적용한다. 이 skill은 private 정본 envelope, 관계와 저장을 소유한다.
 
 ## 명시적 Inbox 접수와 완료
 

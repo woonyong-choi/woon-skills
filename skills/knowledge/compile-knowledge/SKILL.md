@@ -1,6 +1,6 @@
 ---
 name: compile-knowledge
-description: private woon-knowledge의 LLM Wiki source·claim·page spec·receipt를 추가·수정·감사·컴파일할 때 사용한다. catalog/llm-wiki 변경이나 receipt 불일치·stale 검색 복구에 사용한다.
+description: private woon-knowledge의 LLM Wiki source·claim·page spec·receipt를 추가·수정·감사·컴파일할 때 사용한다. 기존 compiler 소유 Wiki 절·본문에 이해·보충·교정을 반영하는 요청도 이 skill이 primary다.
 ---
 
 # Compile Knowledge
