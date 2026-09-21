@@ -69,9 +69,9 @@ source structure inventory는 본문 장·절뿐 아니라 저자 서문·저자
 
 독자가 읽는 Wiki 본문에는 AI·compiler·agent가 지켜야 할 운영 문구를 쓰지 않는다. `이 절이 내용을 소유한다`, `위에서 아래로 연다`, `Run을 눌렀다고 완료가 아니다`, `coverage를 갱신한다`, `정본 writer를 사용한다` 같은 문장은 skill·manifest·receipt·학습 프로젝트의 책임이다. 책·장 탐색 페이지의 link group은 authored prose 없이 실제 direct child 링크만 보여 준다. N.M 절과 terminal N.M.K subsection의 본문은 각각 자기 reader page가 소유한다. 판본·페이지·공식 문서 같은 provenance는 독자가 출처를 판단하는 데 필요한 최소 `판본과 근거`로 reader unit 하단에 두고 작성 절차를 설명하지 않는다.
 
-compiler가 검증한 일반 교과 개념의 출처는 `source → claim → page → receipt`가 소유한다. 같은 출처를 본문 문장마다 반복하지 않으며, inline citation이 없다는 이유만으로 근거 경계 실패로 판정하지 않는다. 본문은 일반 설명·구현 예시·특정 버전의 실제 실행·측정 결과를 서로 혼동하지 않아야 한다. `> 확인 범위:`가 있으면 그 문장을 적용 경계의 우선 근거로 사용하고, 본문이 그 경계를 직접 모순할 때만 실패로 판정한다.
+compiler가 검증한 일반 교과 개념의 출처는 `source → claim → page → receipt`가 소유한다. 같은 출처를 본문 문장마다 반복하지 않으며, inline citation이 없다는 이유만으로 근거 경계 실패로 판정하지 않는다. 본문은 일반 설명·구현 예시·특정 버전의 실제 실행·측정 결과를 서로 혼동하지 않아야 한다. `> 확인 범위:`는 적용 범위를 좁히는 본문 anchor일 뿐이며, 그 문구만으로 범위 안의 주장을 통과시키지 않는다.
 
-품질 검토의 실패는 선택한 현재 Markdown anchor가 결함을 직접 입증할 때만 유효하다. 자연스러운 완전한 문장을 막연히 부족하다고 평가하거나, 일반 교과 설명을 inline citation 부재만으로 탈락시키는 판정은 오탐이다. 명확한 결함을 현재 문장에서 입증하지 못하면 통과시킨다.
+품질 검토는 [공통 작성 품질 계약](writing-quality.md)의 `pass | fail | unknown | not-applicable` 상태와 근거 anchor를 사용한다. 결함이 확인되면 `fail`, 판정 근거가 부족하면 `unknown`이며, 결함을 입증하지 못했다는 이유만으로 `pass`를 주지 않는다. 필수 `fail`과 핵심 `unknown`은 새 품질 통과를 차단한다.
 
 ## Gate scope
 

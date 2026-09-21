@@ -12,7 +12,7 @@
 4. 필요한 용어와 구조가 그 장면을 어떻게 설명하는지 안다.
 5. 비슷한 다음 상황에서 무엇을 확인할지 안다.
 
-이 다섯 경험은 항상 필요하지만, 각 경험이 별도 section이나 같은 문장 수를 가져야 한다는 뜻은 아니다. 작성 과정은 `learning-content-quality.md`의 검증 gate와 `learning-style-corpus.yaml`의 교체 가능한 표본 근거를 함께 사용한다.
+이 다섯 경험은 항상 필요하지만, 각 경험이 별도 section이나 같은 문장 수를 가져야 한다는 뜻은 아니다. 공통 입력·주장 anchor·별도 검토는 `writing-quality.md`, 학습 내용 검증은 `learning-content-quality.md`, 교체 가능한 문체 표본은 `learning-style-corpus.yaml`을 사용한다.
 
 ## Canonical lifecycle
 

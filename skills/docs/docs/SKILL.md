@@ -5,6 +5,8 @@ description: 저장소의 README, 설치·사용법, API 설명, CONTRIBUTING, r
 
 # Docs
 
+작성·검토의 공통 입력, 주장 anchor와 4상태 판정은 [공통 작성 품질 계약](repo://skills/standards/writing-quality.md)을 따른다. 이 skill은 저장소 문서의 실제 code·명령 일치를 소유한다.
+
 이 스킬은 저장소 문서가 코드와 일치하게 만드는 용도다. 외부 라이브러리 사용법 조회는 `$lookup`, 의사결정 기록은 `$adr`, 기술 글은 `$tech`, 파일 형식 변환은 docx/pdf 도구를 쓴다.
 
 1. 코드, manifest, lockfile, CI, script, `--help`를 source of truth로 읽는다.

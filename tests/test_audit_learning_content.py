@@ -24,7 +24,9 @@ class AuditLearningContentTest(unittest.TestCase):
         root = Path(temporary.name)
         (root / "evals/quality").mkdir(parents=True)
         (root / "evals/behavior").mkdir(parents=True)
+        (root / "evals/routing").mkdir(parents=True)
         (root / "evals/results").mkdir(parents=True)
+        (root / "profiles").mkdir(parents=True)
         (root / "standards").mkdir(parents=True)
         (root / "skills/knowledge/archive").mkdir(parents=True)
         (root / "skills/knowledge/compile-knowledge/references").mkdir(parents=True)
@@ -38,6 +40,18 @@ class AuditLearningContentTest(unittest.TestCase):
         shutil.copy(
             ROOT / "evals/behavior/learning-content.yaml",
             root / "evals/behavior/learning-content.yaml",
+        )
+        shutil.copy(
+            ROOT / "evals/routing/writing.yaml",
+            root / "evals/routing/writing.yaml",
+        )
+        shutil.copy(
+            ROOT / "profiles/personal.yaml",
+            root / "profiles/personal.yaml",
+        )
+        shutil.copy(
+            ROOT / "standards/writing-quality.md",
+            root / "standards/writing-quality.md",
         )
         shutil.copy(
             ROOT / "standards/learning-content-quality.md",
@@ -97,6 +111,13 @@ class AuditLearningContentTest(unittest.TestCase):
         )
 
         self.assertTrue(any("version must be 2" in error for error in audit_learning_content(root)))
+
+    def test_rejects_missing_common_writing_standard(self) -> None:
+        root = self.make_root()
+        (root / "standards/writing-quality.md").unlink()
+        self.assertTrue(
+            any("writing-quality.md: missing" in error for error in audit_learning_content(root))
+        )
 
     def test_rejects_missing_book_contract(self) -> None:
         root = self.make_root()

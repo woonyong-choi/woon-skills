@@ -1,5 +1,6 @@
 version: 1
 standard: repo://skills/standards/learning-content-quality.md
+writing_standard: repo://skills/standards/writing-quality.md
 writing_harness: repo://skills/standards/learning-writing-harness.md
 style_corpus: repo://skills/standards/learning-style-corpus.yaml
 checked_at: 2026-08-10

@@ -25,6 +25,9 @@ def non_empty_strings(value: object) -> bool:
 
 def audit_learning_content(root: Path) -> list[str]:
     errors: list[str] = []
+    writing_standard_path = root / "standards/writing-quality.md"
+    writing_routing_path = root / "evals/routing/writing.yaml"
+    personal_profile_path = root / "profiles/personal.yaml"
     standard_path = root / "standards/learning-content-quality.md"
     review_prompt_path = root / "standards/learning-quality-review-prompt.md"
     compile_skill_path = root / "skills/knowledge/compile-knowledge/SKILL.md"
@@ -42,6 +45,7 @@ def audit_learning_content(root: Path) -> list[str]:
         return [f"{root / 'evals/results'}: learning-content result is missing"]
 
     for path in (
+        writing_standard_path,
         standard_path,
         review_prompt_path,
         compile_skill_path,
@@ -51,6 +55,19 @@ def audit_learning_content(root: Path) -> list[str]:
     ):
         if not path.exists():
             errors.append(f"{path}: missing")
+    if not writing_routing_path.exists():
+        errors.append(f"{writing_routing_path}: missing")
+    else:
+        writing_cases = load_mapping(writing_routing_path).get("cases", [])
+        if not isinstance(writing_cases, list) or not any(
+            isinstance(case, dict) and case.get("expect_primary") == "writing"
+            for case in writing_cases
+        ):
+            errors.append(f"{writing_routing_path}: writing primary route is missing")
+    if not personal_profile_path.exists() or "skills/writing/writing" not in personal_profile_path.read_text(
+        encoding="utf-8"
+    ):
+        errors.append(f"{personal_profile_path}: writing skill is missing")
     if standard_path.exists():
         standard_text = standard_path.read_text(encoding="utf-8")
         for required in (
@@ -110,6 +127,7 @@ def audit_learning_content(root: Path) -> list[str]:
 
     contract_targets: dict[str, Path] = {}
     for field, expected_name in (
+        ("writing_standard", "writing-quality.md"),
         ("writing_harness", "learning-writing-harness.md"),
         ("style_corpus", "learning-style-corpus.yaml"),
     ):

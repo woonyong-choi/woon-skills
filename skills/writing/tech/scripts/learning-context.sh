@@ -7,6 +7,7 @@ if ! command -v woon >/dev/null 2>&1; then
 fi
 
 for standard_uri in \
+  repo://skills/standards/writing-quality.md \
   repo://skills/standards/learning-content-quality.md \
   repo://skills/standards/learning-writing-harness.md \
   repo://skills/standards/learning-style-corpus.yaml; do
