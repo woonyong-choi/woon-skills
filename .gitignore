@@ -3,3 +3,7 @@ __pycache__/
 *.pyo
 .DS_Store
 .env
+
+# Local-only scratch, AI work products and one-shot staging helpers.
+.local/
+*.bak
