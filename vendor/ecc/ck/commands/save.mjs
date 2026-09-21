@@ -85,7 +85,7 @@ if (isInit) {
   };
   writeProjects(projects);
 
-  console.log(`✓ Project '${name}' registered.`);
+  console.log(`OK Project '${name}' registered.`);
   console.log(`  Use /ck:save to save session state and /ck:resume to reload it next time.`);
   process.exit(0);
 }
@@ -205,6 +205,6 @@ try {
   process.stderr.write(`ck: warning — could not write native memory entry: ${e.message}\n`);
 }
 
-console.log(`✓ Saved. Session: ${sessionId.slice(0, 8)}`);
+console.log(`OK Saved. Session: ${sessionId.slice(0, 8)}`);
 if (gitActivity) console.log(`  Git: ${gitActivity}`);
 console.log(`  See you next time.`);

@@ -234,7 +234,8 @@ repositories:
     upstream: https://github.com/Jungle-12-303/skills.git
     status: vendor-locked
     license: per-skill
-    decision: keep immutable for comparison; exclude all 183 skills from default profiles
+    decision: keep byte-identical to upstream except for emoji removal, which this public
+      repository does not carry; exclude all 183 skills from default profiles
   - id: madslorentzen-ai-job-search
     review_required: true
     supply_chain_required: true

@@ -41,4 +41,4 @@ const projects = readProjects();
 delete projects[projectPath];
 writeProjects(projects);
 
-console.log(`✓ Context for '${name}' removed.`);
+console.log(`OK Context for '${name}' removed.`);

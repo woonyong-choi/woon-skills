@@ -60,16 +60,16 @@ Uses the browser automation MCP (claude-in-chrome, Playwright, or Puppeteer) to 
 ### Smoke Test
 - Console errors: 0 critical, 2 warnings (analytics noise)
 - Network: all 200/304, no failures
-- Core Web Vitals: LCP 1.2s ✓, CLS 0.02 ✓, INP 89ms ✓
+- Core Web Vitals: LCP 1.2s OK, CLS 0.02 OK, INP 89ms OK
 
 ### Interactions
-- [✓] Nav links: 12/12 working
-- [✗] Contact form: missing error state for invalid email
-- [✓] Auth flow: login/logout working
+- [OK] Nav links: 12/12 working
+- [FAIL] Contact form: missing error state for invalid email
+- [OK] Auth flow: login/logout working
 
 ### Visual
-- [✗] Hero section overflows on 375px viewport
-- [✓] Dark mode: all pages consistent
+- [FAIL] Hero section overflows on 375px viewport
+- [OK] Dark mode: all pages consistent
 
 ### Accessibility
 - 2 AA violations: missing alt text on hero image, low contrast on footer links

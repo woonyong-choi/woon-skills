@@ -218,7 +218,7 @@ checks = {
 }
 
 for check, result in checks.items():
-    status = '✓' if result else '✗'
+    status = 'OK' if result else 'FAIL'
     print(f"{status} {check}")
 EOF
 ```
@@ -287,21 +287,21 @@ DJANGO VERIFICATION REPORT
 ==========================
 
 Phase 1: Environment Check
-  ✓ Python 3.11.5
-  ✓ Virtual environment active
-  ✓ All environment variables set
+  OK Python 3.11.5
+  OK Virtual environment active
+  OK All environment variables set
 
 Phase 2: Code Quality
-  ✓ mypy: No type errors
-  ✗ ruff: 3 issues found (auto-fixed)
-  ✓ black: No formatting issues
-  ✓ isort: Imports properly sorted
-  ✓ manage.py check: No issues
+  OK mypy: No type errors
+  FAIL ruff: 3 issues found (auto-fixed)
+  OK black: No formatting issues
+  OK isort: Imports properly sorted
+  OK manage.py check: No issues
 
 Phase 3: Migrations
-  ✓ No unapplied migrations
-  ✓ No migration conflicts
-  ✓ All models have migrations
+  OK No unapplied migrations
+  OK No migration conflicts
+  OK All models have migrations
 
 Phase 4: Tests + Coverage
   Tests: 247 passed, 0 failed, 5 skipped
@@ -313,49 +313,49 @@ Phase 4: Tests + Coverage
     payments: 91%
 
 Phase 5: Security Scan
-  ✗ pip-audit: 2 vulnerabilities found (fix required)
-  ✓ safety check: No issues
-  ✓ bandit: No security issues
-  ✓ No secrets detected
-  ✓ DEBUG = False
+  FAIL pip-audit: 2 vulnerabilities found (fix required)
+  OK safety check: No issues
+  OK bandit: No security issues
+  OK No secrets detected
+  OK DEBUG = False
 
 Phase 6: Django Commands
-  ✓ collectstatic completed
-  ✓ Database integrity OK
-  ✓ Cache backend reachable
+  OK collectstatic completed
+  OK Database integrity OK
+  OK Cache backend reachable
 
 Phase 7: Performance
-  ✓ No N+1 queries detected
-  ✓ Database indexes configured
-  ✓ Query count acceptable
+  OK No N+1 queries detected
+  OK Database indexes configured
+  OK Query count acceptable
 
 Phase 8: Static Assets
-  ✓ npm audit: No vulnerabilities
-  ✓ Assets built successfully
-  ✓ Static files collected
+  OK npm audit: No vulnerabilities
+  OK Assets built successfully
+  OK Static files collected
 
 Phase 9: Configuration
-  ✓ DEBUG = False
-  ✓ SECRET_KEY configured
-  ✓ ALLOWED_HOSTS set
-  ✓ HTTPS enabled
-  ✓ HSTS enabled
-  ✓ Database configured
+  OK DEBUG = False
+  OK SECRET_KEY configured
+  OK ALLOWED_HOSTS set
+  OK HTTPS enabled
+  OK HSTS enabled
+  OK Database configured
 
 Phase 10: Logging
-  ✓ Logging configured
-  ✓ Log files writable
+  OK Logging configured
+  OK Log files writable
 
 Phase 11: API Documentation
-  ✓ Schema generated
-  ✓ Swagger UI accessible
+  OK Schema generated
+  OK Swagger UI accessible
 
 Phase 12: Diff Review
   Files changed: 12
   +450, -120 lines
-  ✓ No debug statements
-  ✓ No hardcoded secrets
-  ✓ Migrations included
+  OK No debug statements
+  OK No hardcoded secrets
+  OK Migrations included
 
 RECOMMENDATION: WARNING: Fix pip-audit vulnerabilities before deploying
 

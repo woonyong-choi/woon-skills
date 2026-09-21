@@ -98,7 +98,7 @@ for (const [projectPath, info] of Object.entries(projects)) {
     try {
       const existing = JSON.parse(readFileSync(contextJsonPath, 'utf8'));
       if (existing.version === 2) {
-        console.log(`  ✓ ${contextDir} — already v2, skipping`);
+        console.log(`  OK ${contextDir} — already v2, skipping`);
         skipped++;
         continue;
       }
@@ -185,10 +185,10 @@ for (const [projectPath, info] of Object.entries(projects)) {
     // Update projects.json entry
     projects[projectPath].lastUpdated = today();
 
-    console.log(`    ✓ Migrated — ${sessions.length} session(s), ${decisions.length} decision(s)`);
+    console.log(`    OK Migrated — ${sessions.length} session(s), ${decisions.length} decision(s)`);
     migrated++;
   } catch (e) {
-    console.log(`    ✗ Error: ${e.message}`);
+    console.log(`    FAIL Error: ${e.message}`);
     errors++;
   }
 }

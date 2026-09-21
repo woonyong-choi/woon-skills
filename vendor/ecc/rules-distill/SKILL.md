@@ -248,10 +248,10 @@ Draft:
 Approve, modify, or skip each candidate by number:
 > User: Approve 1, 3. Skip 2, 4.
 
-✓ Applied: coding-style.md §LLM Output Validation
-✓ Applied: performance.md §Context Window Management
-✗ Skipped: Iteration Bounds
-✗ Skipped: Boundary Type Conversion
+OK Applied: coding-style.md §LLM Output Validation
+OK Applied: performance.md §Context Window Management
+FAIL Skipped: Iteration Bounds
+FAIL Skipped: Boundary Type Conversion
 
 Results saved to results.json
 ```

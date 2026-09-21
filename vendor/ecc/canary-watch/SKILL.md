@@ -78,15 +78,15 @@ When a critical threshold is crossed:
 ```markdown
 ## Canary Report — myapp.com — 2026-03-23 03:15 PST
 
-### Status: HEALTHY ✓
+### Status: HEALTHY OK
 
 | Check | Result | Baseline | Delta |
 |-------|--------|----------|-------|
-| HTTP | 200 ✓ | 200 | — |
-| Console errors | 0 ✓ | 0 | — |
-| LCP | 1.8s ✓ | 1.6s | +200ms |
-| CLS | 0.01 ✓ | 0.01 | — |
-| API /health | 145ms ✓ | 120ms | +25ms |
+| HTTP | 200 OK | 200 | — |
+| Console errors | 0 OK | 0 | — |
+| LCP | 1.8s OK | 1.6s | +200ms |
+| CLS | 0.01 OK | 0.01 | — |
+| API /health | 145ms OK | 120ms | +25ms |
 
 ### No regressions detected. Deploy is clean.
 ```

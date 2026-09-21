@@ -66,8 +66,8 @@ Present the scan summary and inventory table from the script output:
 
 ```
 Scanning:
-  ✓ ~/.claude/skills/         (17 files)
-  ✗ {cwd}/.claude/skills/    (not found — global skills only)
+  OK ~/.claude/skills/         (17 files)
+  FAIL {cwd}/.claude/skills/    (not found — global skills only)
 ```
 
 | Skill | 7d use | 30d use | Description |

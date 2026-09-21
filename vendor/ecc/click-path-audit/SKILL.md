@@ -212,8 +212,8 @@ Agent 1 MUST complete first. Its output is input for all other agents.
 **ThreadList.tsx "New Email" button:**
 ```
 onClick={() => {
-  useEmailStore.getState().setComposeMode(true)   // ✓ sets composeMode = true
-  useEmailStore.getState().selectThread(null)      // ✗ RESETS composeMode = false
+  useEmailStore.getState().setComposeMode(true)   // OK sets composeMode = true
+  useEmailStore.getState().selectThread(null)      // FAIL RESETS composeMode = false
 }}
 ```
 

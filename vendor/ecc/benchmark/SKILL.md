@@ -78,7 +78,7 @@ Output:
 | Metric | Before | After | Delta | Verdict |
 |--------|--------|-------|-------|---------|
 | LCP | 1.2s | 1.4s | +200ms | WARNING: WARN |
-| Bundle | 180KB | 175KB | -5KB | ✓ BETTER |
+| Bundle | 180KB | 175KB | -5KB | OK BETTER |
 | Build | 12s | 14s | +2s | WARNING: WARN |
 ```
 
