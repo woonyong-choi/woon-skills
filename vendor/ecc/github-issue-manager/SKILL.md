@@ -47,31 +47,33 @@ description: >
 
 ## 빠른 사용법
 
+아래 명령의 `$WOON_ROOT`는 woon 저장소들이 모여 있는 작업공간 루트다(예: `export WOON_ROOT=~/workspace/woon`). 명령은 대상 프로젝트 저장소 안에서 실행한다. `link`에 넘기는 경로는 현재 디렉터리 기준으로 해석된다.
+
 ### 1. 로컬 경로를 GitHub 링크로 만들기
 
 ```bash
-python3 /Users/woonyong/workspace/skills/github-issue-manager/scripts/issue_manager.py link docs/goal.md
-python3 /Users/woonyong/workspace/skills/github-issue-manager/scripts/issue_manager.py link src/main.c:42
+python3 "$WOON_ROOT"/woon-skills/vendor/ecc/github-issue-manager/scripts/issue_manager.py link docs/goal.md
+python3 "$WOON_ROOT"/woon-skills/vendor/ecc/github-issue-manager/scripts/issue_manager.py link src/main.c:42
 ```
 
 ### 2. 결과 요약 댓글 달기
 
 ```bash
-python3 /Users/woonyong/workspace/skills/github-issue-manager/scripts/issue_manager.py comment 4 \
+python3 "$WOON_ROOT"/woon-skills/vendor/ecc/github-issue-manager/scripts/issue_manager.py comment 4 \
   --body-file /tmp/comment.md
 ```
 
 ### 3. Project 상태만 바꾸기
 
 ```bash
-python3 /Users/woonyong/workspace/skills/github-issue-manager/scripts/issue_manager.py status 4 \
+python3 "$WOON_ROOT"/woon-skills/vendor/ecc/github-issue-manager/scripts/issue_manager.py status 4 \
   --project-status done
 ```
 
 ### 4. 댓글 + 링크 + 상태를 한 번에 처리하기
 
 ```bash
-python3 /Users/woonyong/workspace/skills/github-issue-manager/scripts/issue_manager.py sync 4 \
+python3 "$WOON_ROOT"/woon-skills/vendor/ecc/github-issue-manager/scripts/issue_manager.py sync 4 \
   --body-file /tmp/comment.md \
   --link docs/checklist.md \
   --project-status done

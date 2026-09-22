@@ -232,10 +232,15 @@ repositories:
     decision: create a short CSS owner from the useful cascade, layout and logical-property concepts while replacing unsafe universal recipes with accessibility, semantics, state-restoration and rendered-browser gates
   - id: ecc-legacy-vendor
     upstream: https://github.com/Jungle-12-303/skills.git
+    checked_commit: 7d12022ddd708181633f50b92aafc1f6c6f05321
     status: vendor-locked
-    license: per-skill
-    decision: keep byte-identical to upstream except for emoji removal, which this public
-      repository does not carry; exclude all 183 skills from default profiles
+    license: none-declared-upstream
+    decision: keep the tree at the pinned upstream commit except for four recorded hygiene
+      patches - three upstream skills Woon already owns are not vendored, nine description
+      lines were shortened to the profile budget, status glyphs became plain words, and the
+      machine-specific example paths became WOON_ROOT-relative; every divergence is listed in
+      vendor/ecc/PATCHES.md with provenance in vendor/ecc/NOTICE; upstream declares no license
+      for 175 of the 183 skills, so exclude all of them from default profiles until that is resolved
   - id: madslorentzen-ai-job-search
     review_required: true
     supply_chain_required: true

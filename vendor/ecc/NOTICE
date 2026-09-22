@@ -1,0 +1,34 @@
+# vendor/ecc 출처 고지
+
+이 디렉터리의 183개 스킬은 아래 외부 저장소에서 가져온 제3자 저작물이다.
+Woon이 작성한 저작물이 아니며, `skills/` 아래의 Woon 정본과 구분해서 다룬다.
+
+| 항목 | 값 |
+| --- | --- |
+| 원 저장소 | https://github.com/Jungle-12-303/skills.git |
+| 고정 커밋 | `7d12022ddd708181633f50b92aafc1f6c6f05321` (upstream 커밋 날짜 2026-04-16) |
+| 가져온 날짜 | 2026-08-06 (woon-skills 커밋 `5571485`, `2a60c9c`) |
+| 확인한 날짜 | 2026-09-23 — `git ls-remote <upstream> HEAD`가 같은 SHA를 반환해 고정 커밋이 upstream HEAD와 일치함을 확인 |
+| 라이선스 | **명시된 라이선스 없음** (아래 참조) |
+| 정본 pin | `lock/sources.yaml`의 `origins.ecc` |
+| 변경 이력 | `vendor/ecc/PATCHES.md` |
+
+## 라이선스 상태 — 확인한 사실
+
+- upstream 저장소 루트에 `LICENSE`·`NOTICE`·`COPYING` 파일이 없다.
+  (2026-09-23 `git clone --depth 1` 후 `find -maxdepth 2 -iname 'LICENSE*'` → 0건)
+- GitHub가 보고하는 저장소 라이선스도 비어 있다.
+  (`gh api repos/Jungle-12-303/skills --jq .license` → `null`)
+- upstream `README.md`에 라이선스 문구가 없다.
+- 개별 `SKILL.md` frontmatter에 `license:`를 선언한 스킬은 183개 중 **8개**뿐이고 전부 `Apache-2.0`이다:
+  `carrier-relationship-management`, `customs-trade-compliance`, `energy-procurement`,
+  `inventory-demand-planning`, `logistics-exception-management`, `production-scheduling`,
+  `quality-nonconformance`, `returns-reverse-logistics`.
+  (`opensource-pipeline/SKILL.md`의 `License: {chosen_license}`는 템플릿 자리표시자이며 선언이 아니다.)
+
+따라서 나머지 175개 스킬에는 **명시적 이용 허락이 없다**. 기본 저작권이 적용되므로
+재배포·개작 권한을 주장할 수 없다. 현재는 어느 profile에도 포함하지 않고 비교·fallback
+원본으로만 보관한다(`sources/catalog.yaml`의 `ecc-legacy-vendor` 참조).
+
+**다음 담당자가 할 일**: upstream 소유자(크래프톤 정글 12기 303팀)에게 라이선스 명시를 요청하거나,
+이 디렉터리를 공개 저장소에서 제외할지 결정한다. 이 판단은 사용자 권한이라 여기서는 하지 않았다.
